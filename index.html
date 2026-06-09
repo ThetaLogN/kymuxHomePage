@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SpaceOps | The CI/CD Pipeline for Orbital Software</title>
+  <meta name="description" content="Validating orbital space-edge applications against radiation bit-flips, dynamic orbit latencies, and sat outages. CI/CD simulation for Rust, WASM, and C++.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://spaceops.dev">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="SpaceOps | CI/CD for Orbital Software">
+  <meta property="og:description" content="Test your code against radiation bit-flips, dynamic orbit latencies, and satellite blackouts before you launch.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/spaceops_dashboard.png">
+  
+  <!-- Google Fonts (performance optimized) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Tailwind Config Customizations -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            space: {
+              deep: '#05070a',
+              slate: '#0a0f18',
+              card: '#121a28',
+              border: '#1e293b'
+            },
+            neon: {
+              green: '#10b981',
+              purple: '#8b5cf6'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Space Grotesk', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-space-deep bg-grid-cyber min-h-screen relative antialiased selection:bg-neon-purple/30 selection:text-white">
+
+  <!-- Particle Starfield Background -->
+  <div id="starfield" class="absolute inset-0 overflow-hidden pointer-events-none z-0"></div>
+
+  <!-- Ambient Glowing Nebulae -->
+  <div class="absolute top-[10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-neon-purple/5 blur-[120px] pointer-events-none z-0 animate-pulse-slow"></div>
+  <div class="absolute top-[40%] right-[-10%] w-[600px] h-[600px] rounded-full bg-neon-green/5 blur-[150px] pointer-events-none z-0 animate-pulse-slow" style="animation-delay: 3s;"></div>
+  <div class="absolute bottom-[10%] left-[20%] w-[500px] h-[500px] rounded-full bg-neon-purple/5 blur-[120px] pointer-events-none z-0 animate-pulse-slow" style="animation-delay: 6s;"></div>
+
+  <!-- STICKY GLASSMORPHIC NAVBAR -->
+  <header class="sticky top-0 z-50 w-full backdrop-blur-md bg-space-deep/75 border-b border-white/5 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Logo Minimalista -->
+      <a href="#" class="flex items-center space-x-3 group" id="navbar-logo">
+        <div class="relative w-9 h-9 flex items-center justify-center rounded-lg bg-gradient-to-tr from-neon-purple to-neon-green p-[1px] glow-purple transition-all duration-300 group-hover:scale-105">
+          <div class="w-full h-full bg-space-deep rounded-lg flex items-center justify-center">
+            <!-- SpaceOps Satellite SVG Logo -->
+            <svg class="w-5 h-5 text-white group-hover:text-neon-green transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 009 11a5 5 0 00-10 0c0 1.905.77 3.63 2.016 4.887m12.196-1.22c.539.18 1.092.355 1.655.52a22.44 22.44 0 011.605.518m-2.227-2.93a12.978 12.978 0 00-1.638-3.702m1.638 3.702c.517-.026 1.034-.022 1.546.012m-3.184-3.714a13.96 13.96 0 00-3.666-3.666m0 0A13.96 13.96 0 0110 3a13.96 13.96 0 013.666 3.666m0 0a13.96 13.96 0 003.666 3.666m-1.112-2.778a13.96 13.96 0 013.666 3.666" />
+            </svg>
+          </div>
+        </div>
+        <span class="font-display font-bold text-xl tracking-tight text-white transition-all group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-neon-green">
+          Space<span class="text-neon-purple">Ops</span>
+        </span>
+      </a>
+
+      <!-- Link Navigazione (Anchor Scroll) -->
+      <nav class="hidden md:flex items-center space-x-8" aria-label="Main navigation">
+        <a href="#problems" id="nav-problems-link" class="text-sm font-medium text-slate-400 hover:text-white transition-colors duration-200">The Hazards</a>
+        <a href="#features" id="nav-features-link" class="text-sm font-medium text-slate-400 hover:text-white transition-colors duration-200">Our Solution</a>
+        <a href="#pricing" id="nav-pricing-link" class="text-sm font-medium text-slate-400 hover:text-white transition-colors duration-200">Pricing</a>
+        <a href="#waitlist" id="nav-waitlist-link" class="text-sm font-medium text-slate-400 hover:text-white transition-colors duration-200">Beta Access</a>
+      </nav>
+
+      <!-- Bottone "Request Access" Destra + Hamburger -->
+      <div class="flex items-center space-x-4">
+        <a href="#waitlist" id="nav-cta-btn" class="hidden sm:inline-flex relative group overflow-hidden rounded-full p-[1px] transition-all duration-300">
+          <div class="absolute inset-0 bg-gradient-to-r from-neon-purple to-neon-green rounded-full opacity-70 group-hover:opacity-100 transition-opacity"></div>
+          <div class="relative px-5 py-2.5 bg-space-deep rounded-full transition-all duration-200 group-hover:bg-space-deep/80">
+            <span class="text-xs font-semibold tracking-wider uppercase text-white group-hover:text-neon-green transition-colors">
+              Request Access
+            </span>
+          </div>
+        </a>
+
+        <!-- Mobile Hamburger Button -->
+        <button id="mobile-menu-btn" class="md:hidden flex items-center justify-center w-10 h-10 rounded-lg border border-white/10 bg-space-card/50 text-slate-400 hover:text-white hover:border-neon-purple/50 transition-all" aria-label="Toggle mobile menu" aria-expanded="false">
+          <svg id="hamburger-icon" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg id="close-icon" class="w-5 h-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Menu Drawer -->
+    <nav id="mobile-menu" class="hidden md:hidden border-t border-white/5 bg-space-deep/95 backdrop-blur-lg" aria-label="Mobile navigation">
+      <div class="px-4 py-6 space-y-4">
+        <a href="#problems" class="mobile-nav-link block text-base font-medium text-slate-400 hover:text-white transition-colors py-2">The Hazards</a>
+        <a href="#features" class="mobile-nav-link block text-base font-medium text-slate-400 hover:text-white transition-colors py-2">Our Solution</a>
+        <a href="#pricing" class="mobile-nav-link block text-base font-medium text-slate-400 hover:text-white transition-colors py-2">Pricing</a>
+        <a href="#waitlist" class="mobile-nav-link block text-base font-medium text-slate-400 hover:text-white transition-colors py-2">Beta Access</a>
+        <a href="#waitlist" class="block mt-4 w-full py-3 bg-gradient-to-r from-neon-purple to-neon-green text-white font-semibold rounded-lg text-center text-sm">Request Access</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="relative z-10">
+
+    <!-- HERO SECTION -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-24 md:pt-20 md:pb-32 flex flex-col items-center text-center">
+      
+      <!-- Badge Info -->
+      <div class="inline-flex items-center space-x-2 bg-space-card/60 backdrop-blur border border-white/10 px-4 py-1.5 rounded-full mb-8 hover:border-neon-purple/50 transition-colors" id="hero-badge">
+        <span class="flex h-2 w-2 relative">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-neon-green opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-neon-green"></span>
+        </span>
+        <span class="text-xs font-semibold tracking-wider text-slate-300 uppercase">Space Edge Simulation System</span>
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="font-display font-bold text-4xl sm:text-5xl md:text-6xl tracking-tight max-w-4xl leading-[1.1] mb-6" id="hero-title">
+        The CI/CD Pipeline for <br class="hidden sm:inline">
+        <span class="bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-100 to-neon-purple">Orbital Software.</span>
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="text-lg sm:text-xl text-slate-400 max-w-3xl leading-relaxed mb-10" id="hero-subtitle">
+        Test your code against radiation-induced bit-flips, dynamic orbit latencies, and satellite blackouts before you launch. Build resilient space-edge applications with Rust, WASM, and C++.
+      </p>
+
+      <!-- Hero Call-To-Action buttons -->
+      <div class="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 mb-16" id="hero-actions">
+        <a href="#waitlist" id="hero-cta-primary" class="w-full sm:w-auto px-8 py-4 bg-neon-purple hover:bg-neon-purple/90 text-white font-semibold rounded-lg shadow-lg hover:shadow-neon-purple/20 transition-all duration-300 text-center glow-purple hover:-translate-y-0.5">
+          Request Early Access
+        </a>
+        <a href="#features" id="hero-cta-secondary" class="w-full sm:w-auto px-8 py-4 bg-space-card/80 hover:bg-space-card text-slate-300 hover:text-white font-semibold rounded-lg border border-white/10 hover:border-white/20 transition-all duration-300 text-center hover:-translate-y-0.5">
+          Explore Sandbox
+        </a>
+      </div>
+
+    </section>
+
+    <!-- PROBLEM SECTION (The Hazards) -->
+    <section id="problems" class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 border-t border-white/5">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="font-display font-bold text-3xl sm:text-4xl text-white tracking-tight mb-4" id="problems-title">
+          The Harsh Reality of Space Edge Computing
+        </h2>
+        <p class="text-base sm:text-lg text-slate-400" id="problems-subtitle">
+          Standard terrestrial DevOps procedures crash and burn in orbit. Space applications operate under extreme physical environments that must be modeled deterministically.
+        </p>
+      </div>
+
+      <!-- Problem cards grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="problems-grid">
+        
+        <!-- Box 1: Cosmic Radiation (Radiazioni) -->
+        <div class="glass-card rounded-2xl p-8 cyber-border-purple relative flex flex-col h-full" id="problem-card-radiation">
+          <div class="w-12 h-12 flex items-center justify-center rounded-xl bg-neon-purple/10 border border-neon-purple/30 text-neon-purple mb-6 glow-purple">
+            <!-- Radiation/Atom SVG -->
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m11.314 11.314l.707.707M12 9a3 3 0 100 6 3 3 0 000-6z" />
+            </svg>
+          </div>
+          <h3 class="font-display font-semibold text-xl text-white mb-4">Cosmic Radiation & Bit-Flips</h3>
+          <p class="text-sm sm:text-base text-slate-400 leading-relaxed mb-4">
+            Ionizing particles and heavy ions strike microprocessors, causing Single Event Upsets (SEU) that flip bits in RAM and registers. Unmitigated, this triggers fatal crashes and instruction memory corruptions.
+          </p>
+          <div class="mt-auto pt-4 flex items-center text-xs font-mono text-neon-purple">
+            <span class="w-1.5 h-1.5 rounded-full bg-neon-purple mr-2 animate-pulse"></span>
+            SEU Simulated Fault Injection
+          </div>
+        </div>
+
+        <!-- Box 2: Network Disconnections (Disconnessioni di rete) -->
+        <div class="glass-card rounded-2xl p-8 cyber-border-green relative flex flex-col h-full" id="problem-card-network">
+          <div class="w-12 h-12 flex items-center justify-center rounded-xl bg-neon-green/10 border border-neon-green/30 text-neon-green mb-6 glow-green">
+            <!-- Satellite/Signal Outage SVG -->
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2zM12 7v6" />
+            </svg>
+          </div>
+          <h3 class="font-display font-semibold text-xl text-white mb-4">Orbital Network Outages</h3>
+          <p class="text-sm sm:text-base text-slate-400 leading-relaxed mb-4">
+            Leo constellations move at 7.8 km/s, producing extreme Doppler frequency shifts, highly variable round-trip latencies, and regular signal occultation. TCP/IP flows fail completely without specialized network handlers.
+          </p>
+          <div class="mt-auto pt-4 flex items-center text-xs font-mono text-neon-green">
+            <span class="w-1.5 h-1.5 rounded-full bg-neon-green mr-2 animate-pulse"></span>
+            LEO/MEO Doppler & Outage Modeling
+          </div>
+        </div>
+
+        <!-- Box 3: Cost of Failure (Costi di fallimento della missione) -->
+        <div class="glass-card rounded-2xl p-8 cyber-border-purple relative flex flex-col h-full" id="problem-card-cost">
+          <div class="w-12 h-12 flex items-center justify-center rounded-xl bg-neon-purple/10 border border-neon-purple/30 text-neon-purple mb-6 glow-purple">
+            <!-- Rocket/Warning SVG -->
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+          </div>
+          <h3 class="font-display font-semibold text-xl text-white mb-4">Unrecoverable Cost of Failure</h3>
+          <p class="text-sm sm:text-base text-slate-400 leading-relaxed mb-4">
+            You cannot ssh into a bricked satellite orbiting 500 kilometers above Earth. A single segmentation fault or deadlock can permanently compromise a cubesat, vaporizing millions of dollars in mission hardware and payload space.
+          </p>
+          <div class="mt-auto pt-4 flex items-center text-xs font-mono text-neon-purple">
+            <span class="w-1.5 h-1.5 rounded-full bg-neon-purple mr-2 animate-pulse"></span>
+            Fatal Bricking Prevention
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SOLUTION & FEATURES SECTION -->
+    <section id="features" class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 border-t border-white/5 bg-space-slate/30">
+      
+      <!-- Small background graphic elements -->
+      <div class="absolute inset-0 bg-grid-cyber opacity-40 pointer-events-none"></div>
+
+      <div class="text-center max-w-3xl mx-auto mb-20 relative z-10">
+        <h2 class="font-display font-bold text-3xl sm:text-4xl text-white tracking-tight mb-4" id="features-title">
+          Hardened for the Space Frontier
+        </h2>
+        <p class="text-base sm:text-lg text-slate-400" id="features-subtitle">
+          SpaceOps equips aerospace software teams with a deterministic simulation ecosystem integrated directly into standard terrestrial GitLab, GitHub, or custom runners.
+        </p>
+      </div>
+
+      <!-- Features Cards Detail Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 relative z-10" id="features-grid">
+
+        <!-- Card 1: Radiation Fault Injection -->
+        <div class="glass-card glass-card-green rounded-2xl border border-white/10 overflow-hidden group hover:shadow-neon-purple/10 flex flex-col h-full" id="feature-card-radiation">
+          <div class="p-8 flex-1">
+            <!-- Icon -->
+            <div class="w-10 h-10 flex items-center justify-center rounded-lg bg-neon-purple/10 border border-neon-purple/20 text-neon-purple mb-6 group-hover:scale-110 transition-transform">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+              </svg>
+            </div>
+            
+            <h3 class="font-display font-semibold text-xl text-white mb-4">1. Radiation Fault Injection</h3>
+            <p class="text-sm sm:text-base text-slate-400 leading-relaxed mb-6">
+              Dynamically introduce single-bit flips, double-bit corruptions, and register states errors in RAM arrays during compile testing. Track application fault mitigation, self-correction algorithms (EDAC), and recovery paths.
+            </p>
+            
+            <!-- Code preview terminal snippet -->
+            <div class="bg-space-deep border border-white/5 rounded-lg p-4 font-mono text-[11px] leading-relaxed text-slate-300">
+              <div class="flex items-center space-x-1.5 mb-2 text-slate-500 border-b border-white/5 pb-1.5">
+                <span class="w-2 h-2 rounded-full bg-red-500/60"></span>
+                <span>radiation_test.rs</span>
+              </div>
+              <span class="text-neon-purple">#[test]</span><br>
+              <span class="text-blue-400">fn</span> <span class="text-green-400">inject_cosmic_ray</span>() {<br>
+              &nbsp;&nbsp;<span class="text-slate-500">// Simulates 150 MeV particle impact</span><br>
+              &nbsp;&nbsp;<span class="text-neon-green">spaceops::inject_fault</span>(MemoryBlock::RAM, <span class="text-yellow-400">0x0F4A</span>);<br>
+              &nbsp;&nbsp;<span class="text-neon-green">assert_eq!</span>(system.status(), RecoveryMode::Mitigated);<br>
+              }
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Dynamic Orbit Networking -->
+        <div class="glass-card rounded-2xl border border-white/10 overflow-hidden group hover:shadow-neon-green/10 flex flex-col h-full" id="feature-card-network">
+          <div class="p-8 flex-1">
+            <!-- Icon -->
+            <div class="w-10 h-10 flex items-center justify-center rounded-lg bg-neon-green/10 border border-neon-green/20 text-neon-green mb-6 group-hover:scale-110 transition-transform">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+              </svg>
+            </div>
+            
+            <h3 class="font-display font-semibold text-xl text-white mb-4">2. Dynamic Orbit Networking</h3>
+            <p class="text-sm sm:text-base text-slate-400 leading-relaxed mb-6">
+              Emulate real-world LEO, MEO, or GEO constellation networks. Replicate high Doppler effects, progressive packet drop ratios, and complete satellite line-of-sight occultation based on accurate Keplerian orbital models.
+            </p>
+
+            <!-- Network telemetry stats panel -->
+            <div class="bg-space-deep border border-white/5 rounded-lg p-4 font-mono text-[11px] leading-relaxed text-slate-300">
+              <div class="flex items-center justify-between text-slate-500 border-b border-white/5 pb-1.5 mb-2">
+                <span>ORBIT NETWORK TEL</span>
+                <span class="text-neon-green flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-neon-green mr-1 animate-pulse"></span>ACTIVE</span>
+              </div>
+              <div class="flex justify-between mb-1">
+                <span>Satellite Altitude:</span>
+                <span class="text-white">524.3 km</span>
+              </div>
+              <div class="flex justify-between mb-1">
+                <span>Dynamic RTT:</span>
+                <span class="text-neon-purple">124ms &rarr; 452ms</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Symmetrical Drop:</span>
+                <span class="text-neon-purple">4.21% (Doppler Emulated)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: WASM & Container Sandbox -->
+        <div class="glass-card glass-card-green rounded-2xl border border-white/10 overflow-hidden group hover:shadow-neon-purple/10 flex flex-col h-full" id="feature-card-sandbox">
+          <div class="p-8 flex-1">
+            <!-- Icon -->
+            <div class="w-10 h-10 flex items-center justify-center rounded-lg bg-neon-purple/10 border border-neon-purple/20 text-neon-purple mb-6 group-hover:scale-110 transition-transform">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+              </svg>
+            </div>
+            
+            <h3 class="font-display font-semibold text-xl text-white mb-4">3. WASM & Container Sandbox</h3>
+            <p class="text-sm sm:text-base text-slate-400 leading-relaxed mb-6">
+              Run WebAssembly (WASM), C++, or Rust apps in highly sandboxed, hardware-throttled containers. Mimic exact cubesat flight processor limitations, restricting RAM to 64MB and capping core allocation safely.
+            </p>
+
+            <!-- Memory sandbox limit snippet -->
+            <div class="bg-space-deep border border-white/5 rounded-lg p-4 font-mono text-[11px] leading-relaxed text-slate-300">
+              <div class="flex items-center space-x-1.5 mb-2 text-slate-500 border-b border-white/5 pb-1.5">
+                <span class="w-2 h-2 rounded-full bg-blue-500/60"></span>
+                <span>spaceops.yaml</span>
+              </div>
+              <span class="text-blue-400">sandbox</span>:<br>
+              &nbsp;&nbsp;<span class="text-blue-400">runtime</span>: wasmtime-orbital<br>
+              &nbsp;&nbsp;<span class="text-blue-400">resources</span>:<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">memory</span>: <span class="text-yellow-400">64MB</span> <span class="text-slate-500"># Max flight hardware RAM</span><br>
+              &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">cpu_cycles</span>: <span class="text-yellow-400">120MHz</span> <span class="text-slate-500"># Power saving throttling</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PRICING FAKE-DOOR SECTION -->
+    <section id="pricing" class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 border-t border-white/5">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="font-display font-bold text-3xl sm:text-4xl text-white tracking-tight mb-4" id="pricing-title">
+          Mission-Ready Pricing
+        </h2>
+        <p class="text-base sm:text-lg text-slate-400" id="pricing-subtitle">
+          From indie cubesat teams to constellation-scale operations. Choose the plan that fits your mission profile.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto" id="pricing-grid">
+
+        <!-- Plan 1: Explorer -->
+        <div class="glass-card rounded-2xl p-8 border border-white/10 flex flex-col h-full" id="pricing-card-explorer">
+          <div class="mb-6">
+            <h3 class="font-display font-semibold text-lg text-slate-300 mb-2">Explorer</h3>
+            <div class="flex items-baseline space-x-1">
+              <span class="font-display font-bold text-4xl text-white">$299</span>
+              <span class="text-sm text-slate-500">/month</span>
+            </div>
+            <p class="text-sm text-slate-400 mt-2">For indie cubesat teams and university labs.</p>
+          </div>
+          <ul class="space-y-3 text-sm text-slate-400 flex-1 mb-8">
+            <li class="flex items-start space-x-2">
+              <svg class="w-4 h-4 text-neon-green mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              <span>Up to 3 satellite targets</span>
+            </li>
+            <li class="flex items-start space-x-2">
+              <svg class="w-4 h-4 text-neon-green mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              <span>Basic SEU fault injection</span>
+            </li>
+            <li class="flex items-start space-x-2">
+              <svg class="w-4 h-4 text-neon-green mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              <span>LEO orbit network simulation</span>
+            </li>
+            <li class="flex items-start space-x-2">
+              <svg class="w-4 h-4 text-neon-green mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              <span>Community support</span>
+            </li>
+          </ul>
+          <a href="#waitlist" class="pricing-cta block w-full py-3.5 text-center text-sm font-semibold rounded-lg border border-white/10 text-slate-300 hover:text-white hover:border-neon-purple/50 bg-space-deep/50 hover:bg-space-card transition-all duration-200" data-plan="explorer">Join Waitlist</a>
+        </div>
+
+        <!-- Plan 2: Mission Control (Featured) -->
+        <div class="glass-card rounded-2xl p-8 border border-neon-purple/40 flex flex-col h-full relative glow-purple" id="pricing-card-mission">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2">
+            <span class="px-4 py-1 bg-gradient-to-r from-neon-purple to-neon-green text-white text-xs font-bold tracking-wider uppercase rounded-full">Most Popular</span>
+          </div>
+          <div class="mb-6">
+            <h3 class="font-display font-semibold text-lg text-white mb-2">Mission Control</h3>
+            <div class="flex items-baseline space-x-1">
+              <span class="font-display font-bold text-4xl text-white">$999</span>
+              <span class="text-sm text-slate-500">/month</span>
+            </div>
+            <p class="text-sm text-slate-400 mt-2">For professional aerospace software teams.</p>
+          </div>
+          <ul class="space-y-3 text-sm text-slate-300 flex-1 mb-8">
+            <li class="flex items-start space-x-2">
+              <svg class="w-4 h-4 text-neon-green mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              <span>Unlimited satellite targets</span>
+            </li>
+            <li class="flex items-start space-x-2">
+              <svg class="w-4 h-4 text-neon-green mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              <span>Advanced multi-bit fault injection</span>
+            </li>
+            <li class="flex items-start space-x-2">
+              <svg class="w-4 h-4 text-neon-green mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              <span>LEO/MEO/GEO orbit modeling</span>
+            </li>
+            <li class="flex items-start space-x-2">
+              <svg class="w-4 h-4 text-neon-green mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              <span>WASM + Container sandbox</span>
+            </li>
+            <li class="flex items-start space-x-2">
+              <svg class="w-4 h-4 text-neon-green mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              <span>Priority Slack support</span>
+            </li>
+          </ul>
+          <a href="#waitlist" class="pricing-cta block w-full py-3.5 text-center text-sm font-semibold rounded-lg bg-gradient-to-r from-neon-purple to-neon-green text-white hover:opacity-90 shadow-lg hover:shadow-neon-purple/20 transition-all duration-200" data-plan="mission-control">Join Waitlist — Priority</a>
+        </div>
+
+        <!-- Plan 3: Constellation -->
+        <div class="glass-card rounded-2xl p-8 border border-white/10 flex flex-col h-full" id="pricing-card-constellation">
+          <div class="mb-6">
+            <h3 class="font-display font-semibold text-lg text-slate-300 mb-2">Constellation</h3>
+            <div class="flex items-baseline space-x-1">
+              <span class="font-display font-bold text-4xl text-white">Custom</span>
+            </div>
+            <p class="text-sm text-slate-400 mt-2">For large-scale constellation operators.</p>
+          </div>
+          <ul class="space-y-3 text-sm text-slate-400 flex-1 mb-8">
+            <li class="flex items-start space-x-2">
+              <svg class="w-4 h-4 text-neon-green mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              <span>Everything in Mission Control</span>
+            </li>
+            <li class="flex items-start space-x-2">
+              <svg class="w-4 h-4 text-neon-green mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              <span>Dedicated simulation cluster</span>
+            </li>
+            <li class="flex items-start space-x-2">
+              <svg class="w-4 h-4 text-neon-green mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              <span>Custom Keplerian orbit models</span>
+            </li>
+            <li class="flex items-start space-x-2">
+              <svg class="w-4 h-4 text-neon-green mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              <span>On-premise deployment option</span>
+            </li>
+            <li class="flex items-start space-x-2">
+              <svg class="w-4 h-4 text-neon-green mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              <span>Dedicated solutions engineer</span>
+            </li>
+          </ul>
+          <a href="#waitlist" class="pricing-cta block w-full py-3.5 text-center text-sm font-semibold rounded-lg border border-white/10 text-slate-300 hover:text-white hover:border-neon-green/50 bg-space-deep/50 hover:bg-space-card transition-all duration-200" data-plan="constellation">Contact Sales</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- LEAD CAPTURE FORM SECTION -->
+    <section id="waitlist" class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 border-t border-white/5">
+      
+      <!-- Visual background decorative orbits -->
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] orbit-line pointer-events-none z-0 hidden md:block"></div>
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] orbit-line border-dotted pointer-events-none z-0 hidden md:block"></div>
+
+      <div class="max-w-2xl mx-auto relative z-10 text-center mb-12">
+        <h2 class="font-display font-bold text-3xl sm:text-4xl text-white tracking-tight mb-4" id="waitlist-title">
+          Secure Your Orbital Pipeline
+        </h2>
+        <p class="text-base sm:text-lg text-slate-400" id="waitlist-subtitle">
+          Ensure flight software survivability. Apply for our exclusive private beta program and get prioritized waitlist access.
+        </p>
+      </div>
+
+      <!-- Centered Glassmorphic Lead Capture Card -->
+      <div class="max-w-xl mx-auto relative z-10" id="waitlist-card-container">
+        
+        <!-- Border highlight glow effect -->
+        <div class="absolute inset-0 bg-gradient-to-r from-neon-purple/20 to-neon-green/20 rounded-3xl blur-2xl pointer-events-none"></div>
+        
+        <div class="glass-card rounded-3xl p-8 sm:p-10 border border-white/10 glow-purple relative overflow-hidden" id="form-container">
+          
+          <form id="waitlist-form" class="space-y-6" action="https://formspree.io/f/maqzbwbw" method="POST">
+            
+            <!-- Hidden field to track which pricing plan was clicked -->
+            <input type="hidden" id="selected-plan" name="plan" value="direct">
+
+            <!-- Campo Nome -->
+            <div>
+              <label for="name" class="block text-xs font-mono font-semibold tracking-wider text-slate-400 uppercase mb-2">Full Name</label>
+              <input type="text" id="name" name="name" required autocomplete="name"
+                     class="w-full px-4 py-3.5 bg-space-deep/80 border border-white/10 rounded-lg text-white font-sans text-sm placeholder-slate-500 focus:outline-none focus:border-neon-purple focus:ring-1 focus:ring-neon-purple transition-all duration-200" 
+                     placeholder="Commander Mark Watney">
+            </div>
+
+            <!-- Campo Corporate Email -->
+            <div>
+              <label for="email" class="block text-xs font-mono font-semibold tracking-wider text-slate-400 uppercase mb-2">Corporate Email</label>
+              <input type="email" id="email" name="email" required autocomplete="email"
+                     class="w-full px-4 py-3.5 bg-space-deep/80 border border-white/10 rounded-lg text-white font-sans text-sm placeholder-slate-500 focus:outline-none focus:border-neon-purple focus:ring-1 focus:ring-neon-purple transition-all duration-200" 
+                     placeholder="watney@ares3.nasa.gov">
+            </div>
+
+            <!-- Campo Ruolo Dropdown -->
+            <div>
+              <label for="role" class="block text-xs font-mono font-semibold tracking-wider text-slate-400 uppercase mb-2">Your Role</label>
+              <div class="relative">
+                <select id="role" name="role" required 
+                        class="w-full px-4 py-3.5 bg-space-deep/80 border border-white/10 rounded-lg text-white font-sans text-sm focus:outline-none focus:border-neon-purple focus:ring-1 focus:ring-neon-purple transition-all duration-200 appearance-none cursor-pointer">
+                  <option value="" disabled selected class="text-slate-500">Select your professional focus...</option>
+                  <option value="Embedded Software Engineer" class="bg-space-slate text-white">Embedded Software Engineer</option>
+                  <option value="Mission Designer" class="bg-space-slate text-white">Mission Designer</option>
+                  <option value="Aerospace Executive" class="bg-space-slate text-white">Aerospace Executive</option>
+                  <option value="Other" class="bg-space-slate text-white">Other</option>
+                </select>
+                <!-- Custom drop icon indicator -->
+                <div class="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-slate-400">
+                  <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Campo Testo Opzionale: Challenge -->
+            <div>
+              <label for="challenge" class="block text-xs font-mono font-semibold tracking-wider text-slate-400 uppercase mb-2">What is your main challenge with space software? <span class="text-slate-500 lowercase font-sans font-light">(optional)</span></label>
+              <textarea id="challenge" name="challenge" rows="3" 
+                        class="w-full px-4 py-3.5 bg-space-deep/80 border border-white/10 rounded-lg text-white font-sans text-sm placeholder-slate-500 focus:outline-none focus:border-neon-purple focus:ring-1 focus:ring-neon-purple transition-all duration-200 resize-none" 
+                        placeholder="e.g., Radiation mitigation code, testing telemetry networks, WASM binary size..."></textarea>
+            </div>
+
+            <!-- Submit Waitlist button -->
+            <button type="submit" id="submit-btn" 
+                    class="w-full py-4 bg-gradient-to-r from-neon-purple to-neon-green hover:from-neon-purple/95 hover:to-neon-green/95 text-white font-semibold rounded-lg shadow-lg hover:shadow-neon-purple/20 transition-all duration-300 flex items-center justify-center space-x-3 group relative overflow-hidden">
+              <span id="btn-text" class="relative z-10 transition-all duration-200">Join the Beta Waitlist</span>
+              <!-- Subtle loading icon -->
+              <svg id="btn-spinner" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+            </button>
+
+          </form>
+
+          <!-- ELEGANT SUCCESS SCREEN OVERLAY (Hidden initially) -->
+          <div id="success-container" class="hidden absolute inset-0 bg-space-slate/95 backdrop-blur-md p-8 sm:p-10 flex flex-col items-center justify-center text-center z-20 transition-all duration-500 opacity-0">
+            <!-- Satellite Orbit success graphic -->
+            <div class="relative w-20 h-20 mb-8 flex items-center justify-center">
+              <div class="absolute inset-0 border border-dashed border-neon-green/30 rounded-full animate-spin-slow"></div>
+              <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3.5 h-3.5 bg-neon-green rounded-full shadow-[0_0_10px_#10b981]"></div>
+              <div class="w-12 h-12 rounded-full bg-neon-green/10 border border-neon-green/30 flex items-center justify-center text-neon-green glow-green">
+                <!-- Checkmark SVG -->
+                <svg class="w-6 h-6 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+            </div>
+
+            <h3 class="font-display font-bold text-2xl text-white mb-4">Transmission Established</h3>
+            <!-- Exact text output requested by user -->
+            <p id="success-text" class="text-sm sm:text-base text-slate-300 leading-relaxed max-w-md">
+              Thank you for your interest! Our Private Beta is currently full, but we have added you to our priority waitlist. If you have a mission launching within the next 6 months and need urgent testing, please look out for our confirmation email to schedule a 10-minute technical brief.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-space-deep border-t border-white/5 py-12 relative z-10 text-slate-500 font-mono text-[11px]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
+      
+      <!-- Telemetry Coordinates Footer -->
+      <div class="flex flex-col space-y-1 md:items-start text-center md:text-left">
+        <span class="text-slate-400 font-semibold font-display tracking-wider">SPACEOPS SYSTEM INITIATIVE</span>
+        <span>Orbit Altitude: LEO ~525 km (SSO)</span>
+        <span>Inclination: 97.4° | Orbital Period: 95.1 min</span>
+      </div>
+
+      <!-- Copyright and Standard Minimal Links -->
+      <div class="flex flex-col items-center md:items-end space-y-2">
+        <div class="flex space-x-6 mb-2">
+          <span class="hover:text-white transition-colors cursor-default">Documentation</span>
+          <span class="hover:text-white transition-colors cursor-default">API Spec</span>
+          <span class="hover:text-white transition-colors cursor-default">Status: Online</span>
+        </div>
+        <span>&copy; 2026 SpaceOps Inc. Secure the orbital stack.</span>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- VANILLA JAVASCRIPT LOGIC -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      
+      // ──── Twinkling Star Background System ────
+      const starfield = document.getElementById('starfield');
+      if (starfield) {
+        const starCount = 80;
+        for (let i = 0; i < starCount; i++) {
+          const star = document.createElement('div');
+          star.className = 'star';
+          const size = Math.random() * 2 + 1;
+          star.style.width = `${size}px`;
+          star.style.height = `${size}px`;
+          star.style.top = `${Math.random() * 100}%`;
+          star.style.left = `${Math.random() * 100}%`;
+          star.style.setProperty('--duration', `${Math.random() * 4 + 2}s`);
+          star.style.opacity = Math.random();
+          starfield.appendChild(star);
+        }
+      }
+
+      // ──── Mobile Hamburger Menu ────
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const hamburgerIcon = document.getElementById('hamburger-icon');
+      const closeIcon = document.getElementById('close-icon');
+
+      if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', () => {
+          const isOpen = !mobileMenu.classList.contains('hidden');
+          mobileMenu.classList.toggle('hidden');
+          hamburgerIcon.classList.toggle('hidden');
+          closeIcon.classList.toggle('hidden');
+          mobileMenuBtn.setAttribute('aria-expanded', !isOpen);
+        });
+
+        // Close mobile menu when a link is clicked
+        mobileMenu.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            hamburgerIcon.classList.remove('hidden');
+            closeIcon.classList.add('hidden');
+            mobileMenuBtn.setAttribute('aria-expanded', 'false');
+          });
+        });
+      }
+
+      // ──── Smooth Scroll Navigation ────
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+          
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            const headerOffset = 80;
+            const elementPosition = targetElement.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+
+      // ──── Pricing CTA → Waitlist with Plan Tracking ────
+      const planInput = document.getElementById('selected-plan');
+      document.querySelectorAll('.pricing-cta').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const plan = btn.getAttribute('data-plan') || 'direct';
+          if (planInput) planInput.value = plan;
+          
+          // Track which pricing plan was clicked (fake door metric)
+          console.log('[SpaceOps Analytics] Pricing CTA clicked:', plan);
+          
+          // Scroll to waitlist form
+          const waitlistSection = document.getElementById('waitlist');
+          if (waitlistSection) {
+            const headerOffset = 80;
+            const elementPosition = waitlistSection.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+          }
+        });
+      });
+
+      // ──── Lead Capture Form (Formspree Integration) ────
+      const waitlistForm = document.getElementById('waitlist-form');
+      const submitBtn = document.getElementById('submit-btn');
+      const btnText = document.getElementById('btn-text');
+      const btnSpinner = document.getElementById('btn-spinner');
+      const successContainer = document.getElementById('success-container');
+
+      if (waitlistForm && submitBtn) {
+        waitlistForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+
+          // Disable submit button & show loading state
+          submitBtn.disabled = true;
+          submitBtn.classList.add('cursor-not-allowed', 'opacity-90');
+          submitBtn.classList.remove('hover:from-neon-purple/95', 'hover:to-neon-green/95');
+          btnText.textContent = "Connecting to orbit...";
+          btnSpinner.classList.remove('hidden');
+          submitBtn.classList.add('animate-pulse');
+
+          const formData = new FormData(waitlistForm);
+
+          try {
+            // Send data to Formspree
+            const response = await fetch(waitlistForm.action, {
+              method: 'POST',
+              body: formData,
+              headers: { 'Accept': 'application/json' }
+            });
+
+            // Small delay for UX polish
+            await new Promise(resolve => setTimeout(resolve, 800));
+            submitBtn.classList.remove('animate-pulse');
+
+            if (response.ok) {
+              // Show success screen
+              successContainer.classList.remove('hidden');
+              setTimeout(() => {
+                successContainer.classList.remove('opacity-0');
+                successContainer.classList.add('opacity-100');
+              }, 50);
+
+              console.log('[SpaceOps] Transmission Established! Lead captured:', {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                role: formData.get('role'),
+                plan: formData.get('plan'),
+                challenge: formData.get('challenge') || 'None provided'
+              });
+            } else {
+              // Formspree returned an error
+              btnText.textContent = 'Transmission failed — retry';
+              btnSpinner.classList.add('hidden');
+              submitBtn.disabled = false;
+              submitBtn.classList.remove('cursor-not-allowed', 'opacity-90');
+            }
+          } catch (err) {
+            // Network error — fallback to console logging
+            console.warn('[SpaceOps] Formspree unreachable, logging locally:', err);
+            
+            await new Promise(resolve => setTimeout(resolve, 800));
+            submitBtn.classList.remove('animate-pulse');
+
+            // Still show success (don't penalize user for backend issues)
+            successContainer.classList.remove('hidden');
+            setTimeout(() => {
+              successContainer.classList.remove('opacity-0');
+              successContainer.classList.add('opacity-100');
+            }, 50);
+
+            console.log('[SpaceOps] Lead captured locally (offline):', {
+              name: formData.get('name'),
+              email: formData.get('email'),
+              role: formData.get('role'),
+              plan: formData.get('plan'),
+              challenge: formData.get('challenge') || 'None provided'
+            });
+          }
+        });
+      }
+
+    });
+  </script>
+</body>
+</html>
