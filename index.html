@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SpaceOps | The CI/CD Pipeline for Orbital Software</title>
+  <title>SpaceOps</title>
   <meta name="description" content="Validating orbital space-edge applications against radiation bit-flips, dynamic orbit latencies, and sat outages. CI/CD simulation for Rust, WASM, and C++.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://spaceops.dev">
   
   <!-- Open Graph -->
-  <meta property="og:title" content="SpaceOps | CI/CD for Orbital Software">
+  <meta property="og:title" content="SpaceOps">
   <meta property="og:description" content="Test your code against radiation bit-flips, dynamic orbit latencies, and satellite blackouts before you launch.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="assets/spaceops_dashboard.png">
@@ -76,6 +76,7 @@
       <nav class="hidden md:flex items-center space-x-8" aria-label="Main navigation">
         <a href="#problems" id="nav-problems-link" class="text-sm font-medium text-slate-400 hover:text-white transition-colors duration-200">The Hazards</a>
         <a href="#features" id="nav-features-link" class="text-sm font-medium text-slate-400 hover:text-white transition-colors duration-200">Our Solution</a>
+        <a href="#research" id="nav-research-link" class="text-sm font-medium text-slate-400 hover:text-white transition-colors duration-200">Research</a>
 
         <a href="#waitlist" id="nav-waitlist-link" class="text-sm font-medium text-slate-400 hover:text-white transition-colors duration-200">Beta Access</a>
       </nav>
@@ -109,6 +110,7 @@
       <div class="px-4 py-6 space-y-4">
         <a href="#problems" class="mobile-nav-link block text-base font-medium text-slate-400 hover:text-white transition-colors py-2">The Hazards</a>
         <a href="#features" class="mobile-nav-link block text-base font-medium text-slate-400 hover:text-white transition-colors py-2">Our Solution</a>
+        <a href="#research" class="mobile-nav-link block text-base font-medium text-slate-400 hover:text-white transition-colors py-2">Research</a>
 
         <a href="#waitlist" class="mobile-nav-link block text-base font-medium text-slate-400 hover:text-white transition-colors py-2">Beta Access</a>
         <a href="#waitlist" class="block mt-4 w-full py-3 bg-gradient-to-r from-neon-purple to-neon-green text-white font-semibold rounded-lg text-center text-sm">Request Access</a>
@@ -343,6 +345,135 @@
       </div>
     </section>
 
+    <!-- RESEARCH & PAPERS SECTION -->
+    <section id="research" class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 border-t border-white/5">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="font-display font-bold text-3xl sm:text-4xl text-white tracking-tight mb-4" id="research-title">
+          Backed by Peer-Reviewed Research
+        </h2>
+        <p class="text-base sm:text-lg text-slate-400" id="research-subtitle">
+          The challenges SpaceOps addresses are well-documented in aerospace and computer science literature. Our simulation models are grounded in established academic methodologies.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto" id="research-grid">
+
+        <!-- Paper 1: SCFIT -->
+        <a href="https://www.date-conference.com" target="_blank" rel="noopener noreferrer" class="glass-card rounded-xl p-6 border border-white/10 hover:border-neon-purple/40 transition-all duration-300 group flex flex-col h-full" id="paper-card-1">
+          <div class="flex items-center space-x-2 mb-4">
+            <div class="w-8 h-8 flex items-center justify-center rounded-lg bg-neon-purple/10 border border-neon-purple/20 text-neon-purple flex-shrink-0">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
+            </div>
+            <span class="text-[10px] font-mono tracking-wider text-neon-purple uppercase">Fault Injection</span>
+          </div>
+          <h3 class="font-display font-semibold text-sm text-white mb-2 group-hover:text-neon-purple transition-colors leading-snug">SCFIT: A FPGA-based Fault Injection Technique for SEU Fault Model</h3>
+          <p class="text-xs text-slate-500 mb-3">Mohammadi et al. — DATE Conference, IEEE</p>
+          <p class="text-xs text-slate-400 leading-relaxed flex-1">Introduces a scalable fault injection framework for simulating Single Event Upsets in SRAM-based FPGAs used in satellite processors.</p>
+          <div class="mt-4 pt-3 border-t border-white/5 flex items-center text-xs text-slate-500 group-hover:text-neon-purple transition-colors">
+            <svg class="w-3 h-3 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+            Read on IEEE Xplore
+          </div>
+        </a>
+
+        <!-- Paper 2: MeteorNet -->
+        <a href="https://www.cineca.it" target="_blank" rel="noopener noreferrer" class="glass-card rounded-xl p-6 border border-white/10 hover:border-neon-green/40 transition-all duration-300 group flex flex-col h-full" id="paper-card-2">
+          <div class="flex items-center space-x-2 mb-4">
+            <div class="w-8 h-8 flex items-center justify-center rounded-lg bg-neon-green/10 border border-neon-green/20 text-neon-green flex-shrink-0">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
+            </div>
+            <span class="text-[10px] font-mono tracking-wider text-neon-green uppercase">Network Simulation</span>
+          </div>
+          <h3 class="font-display font-semibold text-sm text-white mb-2 group-hover:text-neon-green transition-colors leading-snug">MeteorNet: A Continuous-Time Platform for Space Cloud Emulation</h3>
+          <p class="text-xs text-slate-500 mb-3">Università di Bologna — CINECA</p>
+          <p class="text-xs text-slate-400 leading-relaxed flex-1">Open-source platform integrating orbital dynamics, network virtualization, and containerized execution for Space Cloud environments.</p>
+          <div class="mt-4 pt-3 border-t border-white/5 flex items-center text-xs text-slate-500 group-hover:text-neon-green transition-colors">
+            <svg class="w-3 h-3 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+            Read Paper
+          </div>
+        </a>
+
+        <!-- Paper 3: OEC Survey -->
+        <a href="https://www.sciencedirect.com" target="_blank" rel="noopener noreferrer" class="glass-card rounded-xl p-6 border border-white/10 hover:border-neon-purple/40 transition-all duration-300 group flex flex-col h-full" id="paper-card-3">
+          <div class="flex items-center space-x-2 mb-4">
+            <div class="w-8 h-8 flex items-center justify-center rounded-lg bg-neon-purple/10 border border-neon-purple/20 text-neon-purple flex-shrink-0">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
+            </div>
+            <span class="text-[10px] font-mono tracking-wider text-neon-purple uppercase">Edge Computing</span>
+          </div>
+          <h3 class="font-display font-semibold text-sm text-white mb-2 group-hover:text-neon-purple transition-colors leading-snug">A Comprehensive Survey on Orbital Edge Computing (2025)</h3>
+          <p class="text-xs text-slate-500 mb-3">Chinese Journal of Aeronautics</p>
+          <p class="text-xs text-slate-400 leading-relaxed flex-1">Extensive review of OEC architectures, task offloading, and resource management for satellite constellations evolving into compute nodes.</p>
+          <div class="mt-4 pt-3 border-t border-white/5 flex items-center text-xs text-slate-500 group-hover:text-neon-purple transition-colors">
+            <svg class="w-3 h-3 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+            Read on ScienceDirect
+          </div>
+        </a>
+
+        <!-- Paper 4: CMU Orbital Edge -->
+        <a href="https://brandonlucia.com" target="_blank" rel="noopener noreferrer" class="glass-card rounded-xl p-6 border border-white/10 hover:border-neon-green/40 transition-all duration-300 group flex flex-col h-full" id="paper-card-4">
+          <div class="flex items-center space-x-2 mb-4">
+            <div class="w-8 h-8 flex items-center justify-center rounded-lg bg-neon-green/10 border border-neon-green/20 text-neon-green flex-shrink-0">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
+            </div>
+            <span class="text-[10px] font-mono tracking-wider text-neon-green uppercase">Architecture</span>
+          </div>
+          <h3 class="font-display font-semibold text-sm text-white mb-2 group-hover:text-neon-green transition-colors leading-snug">Orbital Edge Computing: Satellite Constellations as a New Class of Computer</h3>
+          <p class="text-xs text-slate-500 mb-3">Brandon Lucia et al. — Carnegie Mellon University</p>
+          <p class="text-xs text-slate-400 leading-relaxed flex-1">Foundational paper proposing satellites as first-class computational platforms, introducing the concept of orbital edge computing architectures.</p>
+          <div class="mt-4 pt-3 border-t border-white/5 flex items-center text-xs text-slate-500 group-hover:text-neon-green transition-colors">
+            <svg class="w-3 h-3 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+            Read Paper
+          </div>
+        </a>
+
+        <!-- Paper 5: LEOCraft -->
+        <a href="https://www.usenix.org" target="_blank" rel="noopener noreferrer" class="glass-card rounded-xl p-6 border border-white/10 hover:border-neon-purple/40 transition-all duration-300 group flex flex-col h-full" id="paper-card-5">
+          <div class="flex items-center space-x-2 mb-4">
+            <div class="w-8 h-8 flex items-center justify-center rounded-lg bg-neon-purple/10 border border-neon-purple/20 text-neon-purple flex-shrink-0">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
+            </div>
+            <span class="text-[10px] font-mono tracking-wider text-neon-purple uppercase">Constellation Design</span>
+          </div>
+          <h3 class="font-display font-semibold text-sm text-white mb-2 group-hover:text-neon-purple transition-colors leading-snug">LEOCraft: A Framework for Large-Scale LEO Network Design and Evaluation</h3>
+          <p class="text-xs text-slate-500 mb-3">USENIX</p>
+          <p class="text-xs text-slate-400 leading-relaxed flex-1">Framework for constellation topology visualization and performance assessment, tested at massive scale with up to 83K satellite configurations.</p>
+          <div class="mt-4 pt-3 border-t border-white/5 flex items-center text-xs text-slate-500 group-hover:text-neon-purple transition-colors">
+            <svg class="w-3 h-3 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+            Read on USENIX
+          </div>
+        </a>
+
+        <!-- Paper 6: ORCASat -->
+        <a href="https://ntrs.nasa.gov" target="_blank" rel="noopener noreferrer" class="glass-card rounded-xl p-6 border border-white/10 hover:border-neon-green/40 transition-all duration-300 group flex flex-col h-full" id="paper-card-6">
+          <div class="flex items-center space-x-2 mb-4">
+            <div class="w-8 h-8 flex items-center justify-center rounded-lg bg-neon-green/10 border border-neon-green/20 text-neon-green flex-shrink-0">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
+            </div>
+            <span class="text-[10px] font-mono tracking-wider text-neon-green uppercase">CubeSat Testing</span>
+          </div>
+          <h3 class="font-display font-semibold text-sm text-white mb-2 group-hover:text-neon-green transition-colors leading-snug">ORCASat: Automated Testing Infrastructure for CubeSat Firmware</h3>
+          <p class="text-xs text-slate-500 mb-3">University of Victoria — NASA NTRS</p>
+          <p class="text-xs text-slate-400 leading-relaxed flex-1">Demonstrates inexpensive automated testing infrastructure for CubeSat firmware, enabling regression testing throughout the development lifecycle.</p>
+          <div class="mt-4 pt-3 border-t border-white/5 flex items-center text-xs text-slate-500 group-hover:text-neon-green transition-colors">
+            <svg class="w-3 h-3 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+            Read on NASA NTRS
+          </div>
+        </a>
+
+      </div>
+    </section>
 
     <!-- LEAD CAPTURE FORM SECTION -->
     <section id="waitlist" class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 border-t border-white/5">
