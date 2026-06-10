@@ -345,6 +345,94 @@
       </div>
     </section>
 
+    <!-- WHY SPACEOPS / COMPARISON SECTION -->
+    <section id="why-spaceops" class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 border-t border-white/5">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="font-display font-bold text-3xl sm:text-4xl text-white tracking-tight mb-4" id="why-title">
+          Why SpaceOps? The Shift in Orbital DevOps
+        </h2>
+        <p class="text-base sm:text-lg text-slate-400" id="why-subtitle">
+          Traditional aerospace verification relies on expensive hardware testbeds, while academic prototypes remain isolated. SpaceOps bridges the gap with a developer-first CI/CD simulation loop.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto" id="why-grid">
+        
+        <!-- Column 1: Traditional Verification -->
+        <div class="glass-card rounded-2xl p-8 border border-white/5 relative flex flex-col h-full opacity-80 hover:opacity-100 transition-all duration-300" id="why-card-traditional">
+          <span class="text-[10px] font-mono tracking-wider text-red-400 uppercase mb-4 block">Methodology 01</span>
+          <h3 class="font-display font-semibold text-lg text-white mb-3">Traditional Testing</h3>
+          <ul class="space-y-3 text-xs sm:text-sm text-slate-400 leading-relaxed mb-6">
+            <li class="flex items-start">
+              <span class="text-red-500 mr-2 font-bold">✕</span>
+              <span>Expensive Hardware-in-the-Loop (HIL) testbeds costing millions in lab equipment.</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-red-500 mr-2 font-bold">✕</span>
+              <span>Custom-built, mission-specific testing setups that cannot be reused across missions.</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-red-500 mr-2 font-bold">✕</span>
+              <span>Late-stage validation where critical bugs are found near launch, risking delays.</span>
+            </li>
+          </ul>
+          <div class="mt-auto pt-4 border-t border-white/5 text-[11px] font-mono text-slate-500">
+            Slow & High Hardware Cost
+          </div>
+        </div>
+
+        <!-- Column 2: Academic Simulators -->
+        <div class="glass-card rounded-2xl p-8 border border-white/5 relative flex flex-col h-full opacity-80 hover:opacity-100 transition-all duration-300" id="why-card-academic">
+          <span class="text-[10px] font-mono tracking-wider text-yellow-400 uppercase mb-4 block">Methodology 02</span>
+          <h3 class="font-display font-semibold text-lg text-white mb-3">Academic Simulators</h3>
+          <ul class="space-y-3 text-xs sm:text-sm text-slate-400 leading-relaxed mb-6">
+            <li class="flex items-start">
+              <span class="text-yellow-500 mr-2 font-bold">✕</span>
+              <span>Fragmented CLI prototypes (like RadSim or Hypatia) that do not talk to each other.</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-yellow-500 mr-2 font-bold">✕</span>
+              <span>Heavy configuration complexity requiring specialized coordinate files or Python scripts.</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-yellow-500 mr-2 font-bold">✕</span>
+              <span>Isolated models that cannot be run within standard containerized cloud runners.</span>
+            </li>
+          </ul>
+          <div class="mt-auto pt-4 border-t border-white/5 text-[11px] font-mono text-slate-500">
+            High Complexity & Isolated
+          </div>
+        </div>
+
+        <!-- Column 3: SpaceOps (SaaS Premium Column) -->
+        <div class="glass-card rounded-2xl p-8 border border-neon-green/30 relative flex flex-col h-full glow-green transition-all duration-300 shadow-[0_0_20px_rgba(16,185,129,0.1)]" id="why-card-spaceops">
+          <div class="absolute -top-3 right-6 bg-gradient-to-r from-neon-purple to-neon-green text-white font-mono text-[9px] font-bold tracking-widest uppercase px-3 py-1 rounded-full shadow-lg">
+            Recommended
+          </div>
+          <span class="text-[10px] font-mono tracking-wider text-neon-green uppercase mb-4 block">Methodology 03</span>
+          <h3 class="font-display font-semibold text-lg text-white mb-3">SpaceOps CI/CD</h3>
+          <ul class="space-y-3 text-xs sm:text-sm text-slate-300 leading-relaxed mb-6">
+            <li class="flex items-start">
+              <span class="text-neon-green mr-2 font-bold">✓</span>
+              <span><strong>Plug-and-Play CI/CD</strong>: Integrates seamlessly via standard GitHub/GitLab runners.</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-neon-green mr-2 font-bold">✓</span>
+              <span><strong>Unified Hazard Testing</strong>: Models radiation, outages, and CPU limits in a single loop.</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-neon-green mr-2 font-bold">✓</span>
+              <span><strong>Modern Dev Stacks</strong>: Purpose-built for Rust, WebAssembly, and C++ application suites.</span>
+            </li>
+          </ul>
+          <div class="mt-auto pt-4 border-t border-white/10 text-[11px] font-mono text-neon-green">
+            Continuous & Shift-Left Verification
+          </div>
+        </div>
+
+      </div>
+    </section>
+
     <!-- RESEARCH & PAPERS SECTION -->
     <section id="research" class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 border-t border-white/5">
       <div class="text-center max-w-3xl mx-auto mb-16">
