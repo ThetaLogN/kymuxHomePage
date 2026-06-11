@@ -143,7 +143,7 @@
 
       <!-- Subtitle -->
       <p class="text-lg sm:text-xl text-slate-400 max-w-3xl leading-relaxed mb-10" id="hero-subtitle">
-        Test, deploy, and operate software on satellite constellations. Mitigate cosmic ray bit-flips in simulation, orchestrate safe OTA updates, and run remote Hardware-in-the-Loop verifications before and after launch.
+        Test, deploy, secure, and operate software on satellite constellations. Mitigate cosmic ray bit-flips in simulation, block cyber exploits, orchestrate safe OTA updates, and run remote Hardware-in-the-Loop verifications before and after launch.
       </p>
 
       <!-- Hero Call-To-Action buttons -->
@@ -170,7 +170,7 @@
       </div>
 
       <!-- Problem cards grid -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="problems-grid">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" id="problems-grid">
         
         <!-- Box 1: Cosmic Radiation (Radiazioni) -->
         <div class="glass-card rounded-2xl p-8 cyber-border-purple relative flex flex-col h-full" id="problem-card-radiation">
@@ -223,6 +223,24 @@
           <div class="mt-auto pt-4 flex items-center text-xs font-mono text-neon-purple">
             <span class="w-1.5 h-1.5 rounded-full bg-neon-purple mr-2 animate-pulse"></span>
             Fatal Bricking Prevention
+          </div>
+        </div>
+
+        <!-- Box 4: Cybersecurity Exploitation -->
+        <div class="glass-card rounded-2xl p-8 cyber-border-green relative flex flex-col h-full" id="problem-card-security">
+          <div class="w-12 h-12 flex items-center justify-center rounded-xl bg-neon-green/10 border border-neon-green/30 text-neon-green mb-6 glow-green">
+            <!-- Lock/Security SVG -->
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+          </div>
+          <h3 class="font-display font-semibold text-xl text-white mb-4">Command Hijacking & Exploits</h3>
+          <p class="text-sm sm:text-base text-slate-400 leading-relaxed mb-4">
+            Orbits are now high-stakes cyber targets. Satellites suffer from unencrypted uplinks, command spoofing, and system vulnerabilities. An attacker exploiting flight software can completely compromise your assets.
+          </p>
+          <div class="mt-auto pt-4 flex items-center text-xs font-mono text-neon-green">
+            <span class="w-1.5 h-1.5 rounded-full bg-neon-green mr-2 animate-pulse"></span>
+            Zero-Trust Payload Isolation
           </div>
         </div>
 
@@ -315,7 +333,7 @@
           </div>
         </div>
 
-        <!-- Card 3: WASM & Container Sandbox -->
+        <!-- Card 3: WASM Secure Sandboxing -->
         <div class="glass-card glass-card-green rounded-2xl border border-white/10 overflow-hidden group hover:shadow-neon-purple/10 flex flex-col h-full" id="feature-card-sandbox">
           <div class="p-8 flex-1">
             <!-- Icon -->
@@ -325,9 +343,9 @@
               </svg>
             </div>
             
-            <h3 class="font-display font-semibold text-xl text-white mb-4">3. WASM & Container Sandbox</h3>
+            <h3 class="font-display font-semibold text-xl text-white mb-4">3. WASM Secure Sandboxing</h3>
             <p class="text-sm sm:text-base text-slate-400 leading-relaxed mb-6">
-              Run WebAssembly (WASM), C++, or Rust apps in highly sandboxed, hardware-throttled containers. Mimic exact cubesat flight processor limitations, restricting RAM to 64MB and capping core allocation safely.
+              Execute payloads in a zero-trust, memory-isolated WebAssembly (WASM) sandbox. Prevent untrusted payload apps from gaining bus access, executing buffer overflows, or compromising the main flight computer.
             </p>
 
             <!-- Memory sandbox limit snippet -->
@@ -651,7 +669,7 @@
               </div>
               <h3 class="font-display font-semibold text-lg text-white mb-3 group-hover:text-neon-purple transition-colors">Simulation Sandbox</h3>
               <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
-                Launch of our cloud-native container simulation sandbox. Complete support for ionizing radiation bit-flips, dynamic orbital latency emulation, and restricted flight hardware resource modeling inside GitLab and GitHub CI.
+                Launch of our cloud-native container simulation sandbox. Support for ionizing radiation bit-flips, dynamic orbital latency, and restricted hardware resource sandboxing. Automated memory vulnerability scans for Rust/C++ flight builds in CI.
               </p>
             </div>
             <div class="mt-6 pt-4 border-t border-white/5 flex items-center text-xs font-mono text-neon-purple">
@@ -669,9 +687,9 @@
               <div class="flex items-center justify-between mb-4">
                 <span class="text-[10px] font-mono tracking-wider text-neon-green uppercase font-bold px-2.5 py-1 bg-neon-green/10 border border-neon-green/20 rounded-full">Phase 02</span>
               </div>
-              <h3 class="font-display font-semibold text-lg text-white mb-3 group-hover:text-neon-green transition-colors">Constellation Deploy</h3>
+              <h3 class="font-display font-semibold text-lg text-white mb-3 group-hover:text-neon-green transition-colors">Secure Deploy</h3>
               <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
-                Orchestrate secure Over-the-Air (OTA) updates using compressed delta patching to conserve satellite uplink bandwidth. Automated canary rollouts, multi-node configuration syncing, and cryptographic boot signature signing.
+                Orchestrate secure Over-the-Air (OTA) updates using compressed delta patching to conserve satellite uplink bandwidth. Automated canary rollouts, cryptographic boot signature verification, and secure on-orbit key rotation.
               </p>
             </div>
             <div class="mt-6 pt-4 border-t border-white/5 flex items-center text-xs font-mono text-neon-green">
@@ -689,9 +707,9 @@
               <div class="flex items-center justify-between mb-4">
                 <span class="text-[10px] font-mono tracking-wider text-neon-purple uppercase font-bold px-2.5 py-1 bg-neon-purple/10 border border-neon-purple/20 rounded-full">Phase 03</span>
               </div>
-              <h3 class="font-display font-semibold text-lg text-white mb-3 group-hover:text-neon-purple transition-colors">Remote HIL & Fleet Ops</h3>
+              <h3 class="font-display font-semibold text-lg text-white mb-3 group-hover:text-neon-purple transition-colors">Remote HIL & Secure Ops</h3>
               <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
-                Launch of cloud-hosted Hardware-in-the-Loop (HIL) flight computer banks. Developers can run test suites on real OBC hardware remote clusters. Telemetry ingestion pipeline to sync digital twins with live orbital nodes.
+                Launch of cloud-hosted Hardware-in-the-Loop (HIL) flight computer banks. Ingest live flight telemetry with integrated anomaly-detection algorithms to monitor for unauthorized commands or physical bus tampering.
               </p>
             </div>
             <div class="mt-6 pt-4 border-t border-white/5 flex items-center text-xs font-mono text-slate-500">
