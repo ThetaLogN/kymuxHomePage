@@ -53,6 +53,7 @@
 </head>
 <body class="bg-space-deep bg-grid-cyber min-h-screen relative antialiased selection:bg-neon-purple/30 selection:text-white">
 
+
   <!-- Particle Starfield Background -->
   <div id="starfield" class="absolute inset-0 overflow-hidden pointer-events-none z-0"></div>
 
@@ -544,46 +545,67 @@
         </p>
       </div>
 
-      <div class="max-w-4xl mx-auto glass-card rounded-3xl p-8 sm:p-12 border border-white/10 glow-purple relative z-10 flex flex-col md:flex-row items-center gap-10 md:gap-12" id="founder-card">
-        
-        <!-- Founder Image Container -->
-        <div class="w-48 h-48 sm:w-64 sm:h-64 flex-shrink-0 relative group">
-          <div class="absolute inset-0 bg-gradient-to-tr from-neon-purple to-neon-green rounded-2xl opacity-70 blur-md group-hover:opacity-100 transition-opacity duration-300"></div>
-          <img src="assets/giorgio_martucci.jpg" alt="Giorgio Martucci" class="relative z-10 object-cover object-center w-full h-full rounded-2xl border border-white/10 hover-scale-img">
-        </div>
-
-        <!-- Founder Details -->
-        <div class="flex-1 space-y-6">
-          <div>
-            <h3 class="font-display font-bold text-2xl text-white mb-1">Giorgio Martucci</h3>
-            <p class="text-sm font-mono text-neon-green uppercase tracking-wider">Founder & Software Engineer</p>
-          </div>
+      <div class="flip-card-container relative z-10" id="founder-card-wrapper">
+        <div class="flip-card" id="founder-flip-card">
           
-          <div class="space-y-4">
-            <div class="border-l-2 border-neon-purple pl-4 space-y-2">
-              <h4 class="text-xs font-mono font-semibold tracking-wider text-slate-400 uppercase">Background & Education</h4>
-              <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
-                Ingegnere informatico con specializzazione in Cybersecurity. Appassionato di esplorazione spaziale, sistemi embedded critici e ingegneria del software robusta.
-              </p>
-            </div>
+          <!-- FRONT: Photo & Title -->
+          <div class="flip-card-front flex flex-col justify-end p-8 bg-cover bg-center" style="background-image: url('assets/giorgio_martucci.jpg');">
+            <!-- Dark Gradient Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent z-0"></div>
             
-            <div class="border-l-2 border-neon-green pl-4 space-y-2">
-              <h4 class="text-xs font-mono font-semibold tracking-wider text-slate-400 uppercase">Expertise & Vision</h4>
-              <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
-                Esperienza nello studio della sicurezza dei sistemi informatici e del software embedded. Applica solide basi di cybersecurity ed ingegneria del software per proteggere i sistemi di edge computing orbitale da radiazioni cosmiche, anomalie di rete e limitazioni hardware.
-              </p>
+            <div class="relative z-10 flex items-end justify-between w-full">
+              <div>
+                <h3 class="font-display font-bold text-2xl text-white mb-1">Giorgio Martucci</h3>
+                <p class="text-xs font-mono text-neon-green uppercase tracking-wider">Founder & Software Engineer</p>
+              </div>
+              
+              <!-- Circular Plus button -->
+              <div class="flip-btn flex items-center justify-center flex-shrink-0 ml-4">
+                <svg class="w-5 h-5 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                </svg>
+              </div>
             </div>
           </div>
 
-          <!-- Social Links -->
-          <div class="pt-4 flex items-center space-x-6">
-            <a href="https://github.com/ThetaLogN" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 text-slate-400 hover:text-white transition-colors duration-200 text-sm font-mono group">
-              <!-- GitHub Icon SVG -->
-              <svg class="w-5 h-5 text-slate-400 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.646.64.699 1.026 1.592 1.026 2.683 0 3.842-2.337 4.687-4.565 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.579.688.481C19.137 20.162 22 16.418 22 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd" />
-              </svg>
-              <span>ThetaLogN</span>
-            </a>
+          <!-- BACK: Description in English -->
+          <div class="flip-card-back p-8 flex flex-col justify-between border border-white/10">
+            <!-- Background glow -->
+            <div class="absolute inset-0 bg-gradient-to-br from-neon-purple/5 to-neon-green/5 pointer-events-none z-0"></div>
+
+            <div class="relative z-10 space-y-6">
+              <div>
+                <h3 class="font-display font-bold text-xl text-white mb-1">Founder & Background</h3>
+                <p class="text-xs font-mono text-neon-green uppercase tracking-wider font-semibold">GIORGIO MARTUCCI</p>
+              </div>
+
+              <div class="space-y-4 text-slate-300 text-sm leading-relaxed">
+                <p>
+                  Computer Engineer specializing in Cybersecurity. Passionate about space exploration, critical embedded systems, and robust software engineering.
+                </p>
+                <p>
+                  Applies secure coding and fault-tolerance principles to protect orbital edge-computing systems against cosmic radiation, network drops, and flight hardware limits.
+                </p>
+              </div>
+            </div>
+
+            <!-- Social Links & Close Button -->
+            <div class="relative z-10 flex items-center justify-between pt-6 border-t border-white/5">
+              <a href="https://github.com/ThetaLogN" target="_blank" rel="noopener noreferrer" class="stop-propagation flex items-center space-x-2 text-slate-400 hover:text-white transition-colors duration-200 text-xs font-mono group">
+                <svg class="w-4 h-4 text-slate-400 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                  <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.646.64.699 1.026 1.592 1.026 2.683 0 3.842-2.337 4.687-4.565 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.579.688.481C19.137 20.162 22 16.418 22 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd" />
+                </svg>
+                <span>ThetaLogN</span>
+              </a>
+
+              <!-- Circular Close/Minus button -->
+              <div class="flip-btn flex items-center justify-center flex-shrink-0 ml-4">
+                <svg class="w-5 h-5 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M20 12H4" />
+                </svg>
+              </div>
+            </div>
+
           </div>
 
         </div>
@@ -874,6 +896,22 @@
               challenge: formData.get('challenge') || 'None provided'
             });
           }
+        });
+      }
+
+      // ──── Founder Flip Card Interaction ────
+      const flipCard = document.getElementById('founder-flip-card');
+      if (flipCard) {
+        flipCard.addEventListener('click', () => {
+          flipCard.classList.toggle('is-flipped');
+        });
+
+        // Prevent click propagation on links within the card to prevent flipping back
+        const stopPropElements = flipCard.querySelectorAll('.stop-propagation');
+        stopPropElements.forEach(el => {
+          el.addEventListener('click', (e) => {
+            e.stopPropagation();
+          });
         });
       }
 
