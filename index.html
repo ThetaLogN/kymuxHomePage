@@ -170,7 +170,7 @@
       </div>
 
       <!-- Problem cards grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" id="problems-grid">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="problems-grid">
         
         <!-- Box 1: Cosmic Radiation (Radiazioni) -->
         <div class="glass-card rounded-2xl p-8 cyber-border-purple relative flex flex-col h-full" id="problem-card-radiation">
@@ -226,10 +226,10 @@
           </div>
         </div>
 
-        <!-- Box 4: Cybersecurity Exploitation -->
+        <!-- Box 4: Cybersecurity Exploitation 
         <div class="glass-card rounded-2xl p-8 cyber-border-green relative flex flex-col h-full" id="problem-card-security">
           <div class="w-12 h-12 flex items-center justify-center rounded-xl bg-neon-green/10 border border-neon-green/30 text-neon-green mb-6 glow-green">
-            <!-- Lock/Security SVG -->
+            
             <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
             </svg>
@@ -242,7 +242,7 @@
             <span class="w-1.5 h-1.5 rounded-full bg-neon-green mr-2 animate-pulse"></span>
             Zero-Trust Payload Isolation
           </div>
-        </div>
+        </div>-->
 
       </div>
     </section>
@@ -277,7 +277,7 @@
             
             <h3 class="font-display font-semibold text-xl text-white mb-4">1. Radiation Fault Injection</h3>
             <p class="text-sm sm:text-base text-slate-400 leading-relaxed mb-6">
-              Dynamically introduce single-bit flips, double-bit corruptions, and register states errors in RAM arrays during compile testing. Track application fault mitigation, self-correction algorithms (EDAC), and recovery paths.
+              Dynamically introduce single-bit flips, double-bit corruptions, and register state errors in RAM arrays during compile testing. Powered by compiler-level LLFI models to analyze fault mitigation, self-correction (EDAC), and recovery paths.
             </p>
             
             <!-- Code preview terminal snippet -->
@@ -308,7 +308,7 @@
             
             <h3 class="font-display font-semibold text-xl text-white mb-4">2. Dynamic Orbit Networking</h3>
             <p class="text-sm sm:text-base text-slate-400 leading-relaxed mb-6">
-              Emulate real-world LEO, MEO, or GEO constellation networks. Replicate high Doppler effects, progressive packet drop ratios, and complete satellite line-of-sight occultation based on accurate Keplerian orbital models.
+              Emulate real-world LEO, MEO, or GEO constellation networks. Replicate high Doppler effects, progressive packet drop ratios, and signal occultation based on orbit network models built on ETH Zurich's Hypatia emulator.
             </p>
 
             <!-- Network telemetry stats panel -->
@@ -345,7 +345,7 @@
             
             <h3 class="font-display font-semibold text-xl text-white mb-4">3. WASM Secure Sandboxing</h3>
             <p class="text-sm sm:text-base text-slate-400 leading-relaxed mb-6">
-              Execute payloads in a zero-trust, memory-isolated WebAssembly (WASM) sandbox. Prevent untrusted payload apps from gaining bus access, executing buffer overflows, or compromising the main flight computer.
+              Execute payloads in a zero-trust, memory-isolated WebAssembly (WASM) sandbox. Compatible with NASA's F Prime (F') framework code to prevent untrusted apps from gaining bus access or compromising flight computers.
             </p>
 
             <!-- Memory sandbox limit snippet -->
@@ -363,6 +363,38 @@
           </div>
         </div>
 
+      </div>
+
+      <!-- Integrations Row -->
+      <div class="mt-20 pt-12 border-t border-white/5 relative z-10 text-center" id="features-integrations">
+        <span class="text-xs font-mono font-semibold tracking-wider text-slate-500 uppercase block mb-8">COMPATIBILITY & TECHNICAL FOUNDATIONS</span>
+        <div class="flex flex-wrap items-center justify-center gap-8 md:gap-16">
+          
+          <!-- NASA F' -->
+          <a href="https://github.com/nasa/fprime" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2.5 text-slate-400 hover:text-white transition-colors duration-200 font-display text-sm tracking-wide group">
+            <span class="text-neon-purple font-bold group-hover:scale-105 transition-transform">NASA</span>
+            <span>F' (F Prime)</span>
+          </a>
+
+          <!-- Divider -->
+          <div class="hidden sm:block w-1 h-1 rounded-full bg-slate-700"></div>
+
+          <!-- LLFI -->
+          <a href="https://github.com/ubc-aalt/llfi" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2.5 text-slate-400 hover:text-white transition-colors duration-200 font-display text-sm tracking-wide group">
+            <span class="text-neon-green font-bold group-hover:scale-105 transition-transform">LLFI</span>
+            <span>LLVM Fault Injector</span>
+          </a>
+
+          <!-- Divider -->
+          <div class="hidden sm:block w-1 h-1 rounded-full bg-slate-700"></div>
+
+          <!-- Hypatia -->
+          <a href="https://github.com/snkas/hypatia" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2.5 text-slate-400 hover:text-white transition-colors duration-200 font-display text-sm tracking-wide group">
+            <span class="text-neon-purple font-bold group-hover:scale-105 transition-transform">Hypatia</span>
+            <span>LEO Network Emulator</span>
+          </a>
+
+        </div>
       </div>
     </section>
 
@@ -687,14 +719,14 @@
               <div class="flex items-center justify-between mb-4">
                 <span class="text-[10px] font-mono tracking-wider text-neon-green uppercase font-bold px-2.5 py-1 bg-neon-green/10 border border-neon-green/20 rounded-full">Phase 02</span>
               </div>
-              <h3 class="font-display font-semibold text-lg text-white mb-3 group-hover:text-neon-green transition-colors">Secure Deploy</h3>
+              <h3 class="font-display font-semibold text-lg text-white mb-3 group-hover:text-neon-green transition-colors">Secure Deploy & Gateway</h3>
               <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
-                Orchestrate secure Over-the-Air (OTA) updates using compressed delta patching to conserve satellite uplink bandwidth. Automated canary rollouts, cryptographic boot signature verification, and secure on-orbit key rotation.
+                Orchestrate secure Over-the-Air (OTA) updates using compressed delta patching to conserve satellite uplink bandwidth. Validate commands and signatures at the edge, acting as a secure orbital gateway proxy (Space WAF/Firewall) before flight computers ingest them.
               </p>
             </div>
             <div class="mt-6 pt-4 border-t border-white/5 flex items-center text-xs font-mono text-neon-green">
               <span class="w-1.5 h-1.5 rounded-full bg-neon-green mr-2"></span>
-              In Development
+              Secure Constellation Transit & Routing
             </div>
           </div>
 
@@ -707,14 +739,14 @@
               <div class="flex items-center justify-between mb-4">
                 <span class="text-[10px] font-mono tracking-wider text-neon-purple uppercase font-bold px-2.5 py-1 bg-neon-purple/10 border border-neon-purple/20 rounded-full">Phase 03</span>
               </div>
-              <h3 class="font-display font-semibold text-lg text-white mb-3 group-hover:text-neon-purple transition-colors">Remote HIL & Secure Ops</h3>
+              <h3 class="font-display font-semibold text-lg text-white mb-3 group-hover:text-neon-purple transition-colors">Remote HIL & Space CDN</h3>
               <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
-                Launch of cloud-hosted Hardware-in-the-Loop (HIL) flight computer banks. Ingest live flight telemetry with integrated anomaly-detection algorithms to monitor for unauthorized commands or physical bus tampering.
+                Launch cloud-hosted Hardware-in-the-Loop (HIL) flight computer banks. Scale constellation data routing dynamically (Orbital CDN) and enable developers to execute secure WASM microservices at the space edge to analyze and filter sensor payloads before downlink.
               </p>
             </div>
             <div class="mt-6 pt-4 border-t border-white/5 flex items-center text-xs font-mono text-slate-500">
               <span class="w-1.5 h-1.5 rounded-full bg-slate-700 mr-2"></span>
-              Future Architecture
+              Edge Compute & Space CDN
             </div>
           </div>
 
