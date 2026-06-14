@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 70 24" width="70" height="24">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&amp;display=swap');
+    .logo-text {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 22px;
+      fill: #ffffff;
+      letter-spacing: -1px;
+    }
+  </style>
+  <text x="0" y="18" class="logo-text">kumi</text>
+</svg>
