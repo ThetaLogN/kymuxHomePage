@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SpaceOps</title>
+  <title>Kumi</title>
   <meta name="description" content="Validating orbital space-edge applications against radiation bit-flips, dynamic orbit latencies, and sat outages. CI/CD simulation for Rust, WASM, and C++.">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://spaceops.dev">
+  <link rel="canonical" href="https://kumi.dev">
   
   <!-- Open Graph -->
-  <meta property="og:title" content="SpaceOps">
+  <meta property="og:title" content="Kumi">
   <meta property="og:description" content="Test your code against radiation bit-flips, dynamic orbit latencies, and satellite blackouts before you launch.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="assets/spaceops_dashboard.png">
+  <meta property="og:image" content="assets/kumi_dashboard.png">
   
   <!-- Google Fonts (performance optimized) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -68,8 +68,8 @@
       
       <!-- Logo Text -->
       <a href="#" class="flex items-center group" id="navbar-logo">
-        <span class="font-display font-bold text-xl tracking-tight text-white transition-all group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-neon-green">
-          Space<span class="text-neon-purple">Ops</span>
+        <span class="font-display font-bold text-3xl tracking-tight text-white transition-all group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-neon-green">
+          Ku<span class="text-neon-purple">mi</span>
         </span>
       </a>
 
@@ -258,7 +258,7 @@
           Hardened for the Space Frontier
         </h2>
         <p class="text-base sm:text-lg text-slate-400" id="features-subtitle">
-          SpaceOps equips aerospace software teams with a deterministic simulation ecosystem integrated directly into standard terrestrial GitLab, GitHub, or custom runners.
+          Kumi equips aerospace software teams with a deterministic simulation ecosystem integrated directly into standard terrestrial GitLab, GitHub, or custom runners.
         </p>
       </div>
 
@@ -289,7 +289,7 @@
               <span class="text-neon-purple">#[test]</span><br>
               <span class="text-blue-400">fn</span> <span class="text-green-400">inject_cosmic_ray</span>() {<br>
               &nbsp;&nbsp;<span class="text-slate-500">// Simulates 150 MeV particle impact</span><br>
-              &nbsp;&nbsp;<span class="text-neon-green">spaceops::inject_fault</span>(MemoryBlock::RAM, <span class="text-yellow-400">0x0F4A</span>);<br>
+              &nbsp;&nbsp;<span class="text-neon-green">kumi::inject_fault</span>(MemoryBlock::RAM, <span class="text-yellow-400">0x0F4A</span>);<br>
               &nbsp;&nbsp;<span class="text-neon-green">assert_eq!</span>(system.status(), RecoveryMode::Mitigated);<br>
               }
             </div>
@@ -352,7 +352,7 @@
             <div class="bg-space-deep border border-white/5 rounded-lg p-4 font-mono text-[11px] leading-relaxed text-slate-300">
               <div class="flex items-center space-x-1.5 mb-2 text-slate-500 border-b border-white/5 pb-1.5">
                 <span class="w-2 h-2 rounded-full bg-blue-500/60"></span>
-                <span>spaceops.yaml</span>
+                <span>kumi.yaml</span>
               </div>
               <span class="text-blue-400">sandbox</span>:<br>
               &nbsp;&nbsp;<span class="text-blue-400">runtime</span>: wasmtime-orbital<br>
@@ -398,14 +398,14 @@
       </div>
     </section>
 
-    <!-- WHY SPACEOPS / COMPARISON SECTION -->
-    <section id="why-spaceops" class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 border-t border-white/5">
+    <!-- WHY KUMI / COMPARISON SECTION -->
+    <section id="why-kumi" class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 border-t border-white/5">
       <div class="text-center max-w-3xl mx-auto mb-16">
         <h2 class="font-display font-bold text-3xl sm:text-4xl text-white tracking-tight mb-4" id="why-title">
-          Why SpaceOps? The Shift in Orbital DevOps
+          Why Kumi? The Shift in Orbital DevOps
         </h2>
         <p class="text-base sm:text-lg text-slate-400" id="why-subtitle">
-          Traditional aerospace verification relies on expensive hardware testbeds, while academic prototypes remain isolated. SpaceOps bridges the gap with a developer-first CI/CD simulation loop.
+          Traditional aerospace verification relies on expensive hardware testbeds, while academic prototypes remain isolated. Kumi bridges the gap with a developer-first CI/CD simulation loop.
         </p>
       </div>
 
@@ -457,13 +457,13 @@
           </div>
         </div>
 
-        <!-- Column 3: SpaceOps (SaaS Premium Column) -->
-        <div class="glass-card rounded-2xl p-8 border border-neon-green/30 relative flex flex-col h-full glow-green transition-all duration-300 shadow-[0_0_20px_rgba(16,185,129,0.1)]" id="why-card-spaceops">
+        <!-- Column 3: Kumi (SaaS Premium Column) -->
+        <div class="glass-card rounded-2xl p-8 border border-neon-green/30 relative flex flex-col h-full glow-green transition-all duration-300 shadow-[0_0_20px_rgba(16,185,129,0.1)]" id="why-card-kumi">
           <div class="absolute -top-3 right-6 bg-gradient-to-r from-neon-purple to-neon-green text-white font-mono text-[9px] font-bold tracking-widest uppercase px-3 py-1 rounded-full shadow-lg">
             Recommended
           </div>
           <span class="text-[10px] font-mono tracking-wider text-neon-green uppercase mb-4 block">Methodology 03</span>
-          <h3 class="font-display font-semibold text-lg text-white mb-3">SpaceOps CI/CD</h3>
+          <h3 class="font-display font-semibold text-lg text-white mb-3">Kumi CI/CD</h3>
           <ul class="space-y-3 text-xs sm:text-sm text-slate-300 leading-relaxed mb-6">
             <li class="flex items-start">
               <span class="text-neon-green mr-2 font-bold">✓</span>
@@ -493,7 +493,7 @@
           Backed by Peer-Reviewed Research
         </h2>
         <p class="text-base sm:text-lg text-slate-400" id="research-subtitle">
-          The challenges SpaceOps addresses are well-documented in aerospace and computer science literature. Our simulation models are grounded in established academic methodologies.
+          The challenges Kumi addresses are well-documented in aerospace and computer science literature. Our simulation models are grounded in established academic methodologies.
         </p>
       </div>
 
@@ -873,8 +873,8 @@
       
       <!-- Telemetry Coordinates Footer -->
       <div class="flex flex-col space-y-1 md:items-start text-center md:text-left">
-        <span class="text-slate-400 font-semibold font-display tracking-wider">SPACEOPS SYSTEM INITIATIVE</span>
-        <span>Orbit Altitude: LEO ~525 km (SSO)</span>
+          <span class="text-slate-400 font-semibold font-display tracking-wider">KUMI SYSTEM INITIATIVE</span>
+          <span>Orbit Altitude: LEO ~525 km (SSO)</span>
         <span>Inclination: 97.4° | Orbital Period: 95.1 min</span>
       </div>
 
@@ -885,7 +885,7 @@
           <span class="hover:text-white transition-colors cursor-default">API Spec</span>
           <span class="hover:text-white transition-colors cursor-default">Status: Online</span>
         </div>
-        <span>&copy; 2026 SpaceOps Inc. Secure the orbital stack.</span>
+        <span>&copy; 2026 Kumi Inc. Secure the orbital stack.</span>
       </div>
 
     </div>
@@ -1002,7 +1002,7 @@
                 successContainer.classList.add('opacity-100');
               }, 50);
 
-              console.log('[SpaceOps] Transmission Established! Lead captured:', {
+              console.log('[Kumi] Transmission Established! Lead captured:', {
                 name: formData.get('name'),
                 email: formData.get('email'),
                 role: formData.get('role'),
@@ -1018,7 +1018,7 @@
             }
           } catch (err) {
             // Network error — fallback to console logging
-            console.warn('[SpaceOps] Formspree unreachable, logging locally:', err);
+            console.warn('[Kumi] Formspree unreachable, logging locally:', err);
             
             await new Promise(resolve => setTimeout(resolve, 800));
             submitBtn.classList.remove('animate-pulse');
@@ -1030,7 +1030,7 @@
               successContainer.classList.add('opacity-100');
             }, 50);
 
-            console.log('[SpaceOps] Lead captured locally (offline):', {
+            console.log('[Kumi] Lead captured locally (offline):', {
               name: formData.get('name'),
               email: formData.get('email'),
               role: formData.get('role'),
