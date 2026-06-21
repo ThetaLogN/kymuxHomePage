@@ -39,8 +39,8 @@
               border: '#1e293b'
             },
             neon: {
-              green: '#10b981',
-              purple: '#8b5cf6'
+              green: '#94a3b8',
+              purple: '#818cf8'
             }
           },
           fontFamily: {
@@ -59,9 +59,9 @@
   <div id="starfield" class="absolute inset-0 overflow-hidden pointer-events-none z-0"></div>
 
   <!-- Ambient Glowing Nebulae -->
-  <div class="absolute top-[10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-neon-purple/5 blur-[120px] pointer-events-none z-0 animate-pulse-slow"></div>
-  <div class="absolute top-[40%] right-[-10%] w-[600px] h-[600px] rounded-full bg-neon-green/5 blur-[150px] pointer-events-none z-0 animate-pulse-slow" style="animation-delay: 3s;"></div>
-  <div class="absolute bottom-[10%] left-[20%] w-[500px] h-[500px] rounded-full bg-neon-purple/5 blur-[120px] pointer-events-none z-0 animate-pulse-slow" style="animation-delay: 6s;"></div>
+  <div class="absolute top-[10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-neon-purple/[0.01] blur-[120px] pointer-events-none z-0 animate-pulse-slow"></div>
+  <div class="absolute top-[40%] right-[-10%] w-[600px] h-[600px] rounded-full bg-neon-green/[0.01] blur-[150px] pointer-events-none z-0 animate-pulse-slow" style="animation-delay: 3s;"></div>
+  <div class="absolute bottom-[10%] left-[20%] w-[500px] h-[500px] rounded-full bg-neon-purple/[0.01] blur-[120px] pointer-events-none z-0 animate-pulse-slow" style="animation-delay: 6s;"></div>
 
   <!-- STICKY GLASSMORPHIC NAVBAR -->
   <header class="sticky top-0 z-50 w-full backdrop-blur-md bg-space-deep/75 border-b border-white/5 transition-all duration-300">
@@ -84,13 +84,8 @@
 
       <!-- Bottone "Request Access" Destra + Hamburger -->
       <div class="flex items-center space-x-4">
-        <a href="#waitlist" id="nav-cta-btn" class="hidden sm:inline-flex relative group overflow-hidden rounded-full p-[1px] transition-all duration-300">
-          <div class="absolute inset-0 bg-gradient-to-r from-neon-purple to-neon-green rounded-full opacity-70 group-hover:opacity-100 transition-opacity"></div>
-          <div class="relative px-5 py-2.5 bg-space-deep rounded-full transition-all duration-200 group-hover:bg-space-deep/80">
-            <span class="text-xs font-semibold tracking-wider uppercase text-white group-hover:text-neon-green transition-colors">
-              Request Access
-            </span>
-          </div>
+        <a href="#waitlist" id="nav-cta-btn" class="hidden sm:inline-flex px-5 py-2.5 bg-white text-space-deep font-semibold rounded-full hover:bg-slate-100 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 text-xs tracking-wider uppercase">
+          Request Access
         </a>
 
         <!-- Mobile Hamburger Button -->
@@ -115,7 +110,7 @@
         <a href="#roadmap" class="mobile-nav-link block text-base font-medium text-slate-400 hover:text-white transition-colors py-2">Roadmap</a>
         <a href="#founder" class="mobile-nav-link block text-base font-medium text-slate-400 hover:text-white transition-colors py-2">Founder</a>
         <a href="#waitlist" class="mobile-nav-link block text-base font-medium text-slate-400 hover:text-white transition-colors py-2">Beta Access</a>
-        <a href="#waitlist" class="block mt-4 w-full py-3 bg-gradient-to-r from-neon-purple to-neon-green text-white font-semibold rounded-lg text-center text-sm">Request Access</a>
+        <a href="#waitlist" class="block mt-4 w-full py-3 bg-white text-space-deep font-semibold rounded-lg text-center text-sm hover:bg-slate-100 transition-colors">Request Access</a>
       </div>
     </nav>
   </header>
@@ -129,7 +124,7 @@
       <!-- Main Headline -->
       <h1 class="font-display font-bold text-4xl sm:text-5xl md:text-6xl tracking-tight max-w-4xl leading-[1.1] mb-6" id="hero-title">
         The CI/CD & Operations Platform for <br class="hidden sm:inline">
-        <span class="bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-100 to-neon-purple">Space-Resilient Software.</span>
+        <span class="bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-100 to-slate-400">Space-Resilient Software.</span>
       </h1>
 
       <!-- Subtitle -->
@@ -139,10 +134,10 @@
 
       <!-- Hero Call-To-Action buttons -->
       <div class="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 mb-16" id="hero-actions">
-        <a href="#waitlist" id="hero-cta-primary" class="w-full sm:w-auto px-8 py-4 bg-neon-purple hover:bg-neon-purple/90 text-white font-semibold rounded-lg shadow-lg hover:shadow-neon-purple/20 transition-all duration-300 text-center glow-purple hover:-translate-y-0.5">
+        <a href="#waitlist" id="hero-cta-primary" class="w-full sm:w-auto px-8 py-4 bg-white hover:bg-slate-100 text-space-deep font-semibold rounded-lg transition-all duration-300 text-center hover:-translate-y-0.5">
           Request Early Access
         </a>
-        <a href="#roadmap" id="hero-cta-secondary" class="w-full sm:w-auto px-8 py-4 bg-space-card/80 hover:bg-space-card text-slate-300 hover:text-white font-semibold rounded-lg border border-white/10 hover:border-white/20 transition-all duration-300 text-center hover:-translate-y-0.5">
+        <a href="#roadmap" id="hero-cta-secondary" class="w-full sm:w-auto px-8 py-4 bg-transparent hover:bg-white/5 text-slate-300 hover:text-white font-semibold rounded-lg border border-white/10 hover:border-white/20 transition-all duration-300 text-center hover:-translate-y-0.5">
           Explore Roadmap
         </a>
       </div>
@@ -291,7 +286,7 @@
       <!-- Real-World Incident Callout (Airbus A320 Solar Radiation Incident) -->
       <div class="mt-16 max-w-5xl mx-auto relative group" id="problem-airbus-incident">
         <!-- Ambient outer glow -->
-        <div class="absolute inset-0 bg-gradient-to-r from-red-500/10 via-neon-purple/5 to-transparent rounded-2xl blur-xl opacity-70 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-red-500/5 via-white/[0.02] to-transparent rounded-2xl blur-xl opacity-70 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
         
         <!-- Glass card content -->
         <div class="relative glass-card rounded-2xl p-6 sm:p-8 md:p-10 border border-red-500/20 hover:border-red-500/40 transition-all duration-300">
@@ -878,7 +873,7 @@
       <div class="max-w-xl mx-auto relative z-10" id="waitlist-card-container">
         
         <!-- Border highlight glow effect -->
-        <div class="absolute inset-0 bg-gradient-to-r from-neon-purple/20 to-neon-green/20 rounded-3xl blur-2xl pointer-events-none"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-white/[0.02] to-white/[0.06] rounded-3xl blur-2xl pointer-events-none"></div>
         
         <div class="glass-card rounded-3xl p-8 sm:p-10 border border-white/10 glow-purple relative overflow-hidden" id="form-container">
           
@@ -910,11 +905,11 @@
                 <select id="role" name="role" required 
                         class="w-full px-4 py-3.5 bg-space-deep/80 border border-white/10 rounded-lg text-white font-sans text-sm focus:outline-none focus:border-neon-purple focus:ring-1 focus:ring-neon-purple transition-all duration-200 appearance-none cursor-pointer">
                   <option value="" disabled selected class="text-slate-500">Select your professional focus...</option>
-                  <option value="Embedded Software Engineer" class="bg-space-slate text-white">Embedded Software Engineer</option>
+                  <option value="Embedded Software / Avionics Engineer" class="bg-space-slate text-white">Embedded Software / Avionics Engineer</option>
                   <option value="AI/ML Engineer" class="bg-space-slate text-white">AI/ML Engineer</option>
                   <option value="Backend / Full-Stack Engineer" class="bg-space-slate text-white">Backend / Full-Stack Engineer</option>
-                  <option value="Mission Designer" class="bg-space-slate text-white">Mission Designer</option>
-                  <option value="Aerospace Executive" class="bg-space-slate text-white">Aerospace Executive</option>
+                  <option value="Mission Designer / Flight Ops" class="bg-space-slate text-white">Mission Designer / Flight Ops</option>
+                  <option value="Aerospace / Aviation Executive" class="bg-space-slate text-white">Aerospace / Aviation Executive</option>
                   <option value="Other" class="bg-space-slate text-white">Other</option>
                 </select>
                 <!-- Custom drop icon indicator -->
@@ -936,7 +931,7 @@
 
             <!-- Submit Waitlist button -->
             <button type="submit" id="submit-btn" 
-                    class="w-full py-4 bg-gradient-to-r from-neon-purple to-neon-green hover:from-neon-purple/95 hover:to-neon-green/95 text-white font-semibold rounded-lg shadow-lg hover:shadow-neon-purple/20 transition-all duration-300 flex items-center justify-center space-x-3 group relative overflow-hidden">
+                    class="w-full py-4 bg-white hover:bg-slate-100 text-space-deep font-semibold rounded-lg transition-all duration-300 flex items-center justify-center space-x-3 group relative">
               <span id="btn-text" class="relative z-10 transition-all duration-200">Join the Beta Waitlist</span>
               <!-- Subtle loading icon -->
               <svg id="btn-spinner" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true">
@@ -1081,7 +1076,7 @@
           // Disable submit button & show loading state
           submitBtn.disabled = true;
           submitBtn.classList.add('cursor-not-allowed', 'opacity-90');
-          submitBtn.classList.remove('hover:from-neon-purple/95', 'hover:to-neon-green/95');
+          submitBtn.classList.remove('hover:bg-slate-100');
           btnText.textContent = "Connecting to orbit...";
           btnSpinner.classList.remove('hidden');
           submitBtn.classList.add('animate-pulse');
@@ -1121,6 +1116,7 @@
               btnSpinner.classList.add('hidden');
               submitBtn.disabled = false;
               submitBtn.classList.remove('cursor-not-allowed', 'opacity-90');
+              submitBtn.classList.add('hover:bg-slate-100');
             }
           } catch (err) {
             // Network error — fallback to console logging

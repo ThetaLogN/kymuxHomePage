@@ -57,7 +57,11 @@ This document contains a structured draft of the Y Combinator application questi
 We fear modern satellite bus providers (like Apex or Loft Orbital) developing their own software validation tools for their customers. However, Kymux remains an independent, cross-platform CI/CD tool.*
 
 #### Where do you get your users/customers? How do they find out about you?
-*We target software engineers and mission designers at CubeSat and SmallSat startups. We acquire them through technical content (blog posts demonstrating fault-tolerant Rust in space), open-source contributions, and developer-focused space tech communities.*
+*We target two primary customer segments:
+1. **Space Edge Developers**: Software engineers and mission designers at CubeSat/SmallSat startups and commercial space companies.
+2. **Avionics & High-Altitude Systems Developers**: Teams building safety-critical flight control software for commercial/military aviation and high-altitude UAVs. The late-2025 Airbus A320 ELAC memory corruption incident proved that solar radiation is a critical hazard at standard flight altitudes, opening up a massive secondary market in aerospace and defense seeking developer-friendly software-level fault injection tools.
+
+We acquire them through technical content (e.g., "Designing Fault-Tolerant Rust for Aviation & Orbit"), open-source contributions to flight frameworks, and developer-focused aerospace communities.*
 
 ---
 
