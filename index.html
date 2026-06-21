@@ -287,6 +287,59 @@
         </div>-->
 
       </div>
+
+      <!-- Real-World Incident Callout (Airbus A320 Solar Radiation Incident) -->
+      <div class="mt-16 max-w-5xl mx-auto relative group" id="problem-airbus-incident">
+        <!-- Ambient outer glow -->
+        <div class="absolute inset-0 bg-gradient-to-r from-red-500/10 via-neon-purple/5 to-transparent rounded-2xl blur-xl opacity-70 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+        
+        <!-- Glass card content -->
+        <div class="relative glass-card rounded-2xl p-6 sm:p-8 md:p-10 border border-red-500/20 hover:border-red-500/40 transition-all duration-300">
+          <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+            
+            <div class="space-y-4 flex-1 text-left">
+              <!-- Warning Badge -->
+              <div class="flex items-center space-x-2">
+                <span class="relative flex h-2 w-2">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                </span>
+                <span class="text-xs font-mono font-semibold tracking-wider text-red-400 uppercase">Real-World Case Study</span>
+              </div>
+              
+              <h3 class="font-display font-bold text-xl sm:text-2xl text-white tracking-tight">
+                Solar Radiation Hazards are Already Here: The Airbus A320 Fleet Emergency
+              </h3>
+              
+              <p class="text-sm sm:text-base text-slate-400 leading-relaxed">
+                On October 30, 2025, a JetBlue A320 flight experienced an abrupt uncommanded descent, injuring passengers. Investigation by EASA and Airbus revealed that **intense solar radiation corrupted flight control memory** inside the ELAC (Elevator Aileron Computer) computers. This triggered an urgent global airworthiness directive affecting <strong class="text-white">over 6,000 aircraft</strong>. 
+              </p>
+              
+              <p class="text-xs text-slate-500 leading-relaxed italic">
+                Proof that memory bit-flips and radiation events are not limited to deep space—they actively compromise critical systems at commercial flight altitudes, highlighting the immediate necessity of software-level fault injection testing.
+              </p>
+            </div>
+            
+            <!-- Quick Stats Panel -->
+            <div class="flex flex-row lg:flex-col gap-4 justify-start sm:justify-center lg:justify-start shrink-0">
+              
+              <!-- Stat 1 -->
+              <div class="px-5 py-4 bg-space-deep/80 rounded-xl border border-white/5 text-center min-w-[140px] flex-1 lg:flex-initial">
+                <div class="text-3xl font-bold text-red-500 font-display">6,000+</div>
+                <div class="text-[9px] text-slate-500 font-mono uppercase tracking-wider mt-1">Planes Recalled</div>
+              </div>
+              
+              <!-- Stat 2 -->
+              <div class="px-5 py-4 bg-space-deep/80 rounded-xl border border-white/5 text-center min-w-[140px] flex-1 lg:flex-initial">
+                <div class="text-sm font-semibold text-white font-mono">ELAC Memory</div>
+                <div class="text-[9px] text-neon-purple font-mono uppercase tracking-wider mt-1">Fault Vector</div>
+              </div>
+              
+            </div>
+            
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- SOLUTION & FEATURES SECTION -->
