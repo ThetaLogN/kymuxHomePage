@@ -39,8 +39,8 @@
               border: '#1e293b'
             },
             neon: {
-              green: '#94a3b8',
-              purple: '#818cf8'
+              green: '#10b981',
+              purple: '#8b5cf6'
             }
           },
           fontFamily: {
@@ -59,9 +59,9 @@
   <div id="starfield" class="absolute inset-0 overflow-hidden pointer-events-none z-0"></div>
 
   <!-- Ambient Glowing Nebulae -->
-  <div class="absolute top-[10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-neon-purple/[0.01] blur-[120px] pointer-events-none z-0 animate-pulse-slow"></div>
-  <div class="absolute top-[40%] right-[-10%] w-[600px] h-[600px] rounded-full bg-neon-green/[0.01] blur-[150px] pointer-events-none z-0 animate-pulse-slow" style="animation-delay: 3s;"></div>
-  <div class="absolute bottom-[10%] left-[20%] w-[500px] h-[500px] rounded-full bg-neon-purple/[0.01] blur-[120px] pointer-events-none z-0 animate-pulse-slow" style="animation-delay: 6s;"></div>
+  <div class="absolute top-[10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-neon-purple/5 blur-[120px] pointer-events-none z-0 animate-pulse-slow"></div>
+  <div class="absolute top-[40%] right-[-10%] w-[600px] h-[600px] rounded-full bg-neon-green/5 blur-[150px] pointer-events-none z-0 animate-pulse-slow" style="animation-delay: 3s;"></div>
+  <div class="absolute bottom-[10%] left-[20%] w-[500px] h-[500px] rounded-full bg-neon-purple/5 blur-[120px] pointer-events-none z-0 animate-pulse-slow" style="animation-delay: 6s;"></div>
 
   <!-- STICKY GLASSMORPHIC NAVBAR -->
   <header class="sticky top-0 z-50 w-full backdrop-blur-md bg-space-deep/75 border-b border-white/5 transition-all duration-300">
@@ -78,14 +78,19 @@
         <a href="#features" id="nav-features-link" class="text-sm font-medium text-slate-400 hover:text-white transition-colors duration-200">Our Solution</a>
         <a href="#research" id="nav-research-link" class="text-sm font-medium text-slate-400 hover:text-white transition-colors duration-200">Research</a>
         <a href="#founder" id="nav-founder-link" class="text-sm font-medium text-slate-400 hover:text-white transition-colors duration-200">Founder</a>
-        <a href="#roadmap" id="nav-roadmap-link" class="text-sm font-medium text-slate-400 hover:text-white transition-colors duration-200">Roadmap</a>
+        <!-- <a href="#roadmap" id="nav-roadmap-link" class="text-sm font-medium text-slate-400 hover:text-white transition-colors duration-200">Roadmap</a> -->
         <a href="#waitlist" id="nav-waitlist-link" class="text-sm font-medium text-slate-400 hover:text-white transition-colors duration-200">Beta Access</a>
       </nav>
 
       <!-- Bottone "Request Access" Destra + Hamburger -->
       <div class="flex items-center space-x-4">
-        <a href="#waitlist" id="nav-cta-btn" class="hidden sm:inline-flex px-5 py-2.5 bg-white text-space-deep font-semibold rounded-full hover:bg-slate-100 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 text-xs tracking-wider uppercase">
-          Request Access
+        <a href="#waitlist" id="nav-cta-btn" class="hidden sm:inline-flex relative group overflow-hidden rounded-full p-[1px] transition-all duration-300">
+          <div class="absolute inset-0 bg-gradient-to-r from-neon-purple to-neon-green rounded-full opacity-70 group-hover:opacity-100 transition-opacity"></div>
+          <div class="relative px-5 py-2.5 bg-space-deep rounded-full transition-all duration-200 group-hover:bg-space-deep/80">
+            <span class="text-xs font-semibold tracking-wider uppercase text-white group-hover:text-neon-green transition-colors">
+              Request Access
+            </span>
+          </div>
         </a>
 
         <!-- Mobile Hamburger Button -->
@@ -107,10 +112,10 @@
         <a href="#problems" class="mobile-nav-link block text-base font-medium text-slate-400 hover:text-white transition-colors py-2">The Hazards</a>
         <a href="#features" class="mobile-nav-link block text-base font-medium text-slate-400 hover:text-white transition-colors py-2">Our Solution</a>
         <a href="#research" class="mobile-nav-link block text-base font-medium text-slate-400 hover:text-white transition-colors py-2">Research</a>
-        <a href="#roadmap" class="mobile-nav-link block text-base font-medium text-slate-400 hover:text-white transition-colors py-2">Roadmap</a>
+        <!-- <a href="#roadmap" class="mobile-nav-link block text-base font-medium text-slate-400 hover:text-white transition-colors py-2">Roadmap</a> -->
         <a href="#founder" class="mobile-nav-link block text-base font-medium text-slate-400 hover:text-white transition-colors py-2">Founder</a>
         <a href="#waitlist" class="mobile-nav-link block text-base font-medium text-slate-400 hover:text-white transition-colors py-2">Beta Access</a>
-        <a href="#waitlist" class="block mt-4 w-full py-3 bg-white text-space-deep font-semibold rounded-lg text-center text-sm hover:bg-slate-100 transition-colors">Request Access</a>
+        <a href="#waitlist" class="block mt-4 w-full py-3 bg-gradient-to-r from-neon-purple to-neon-green text-white font-semibold rounded-lg text-center text-sm">Request Access</a>
       </div>
     </nav>
   </header>
@@ -124,7 +129,7 @@
       <!-- Main Headline -->
       <h1 class="font-display font-bold text-4xl sm:text-5xl md:text-6xl tracking-tight max-w-4xl leading-[1.1] mb-6" id="hero-title">
         The CI/CD & Operations Platform for <br class="hidden sm:inline">
-        <span class="bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-100 to-slate-400">Space-Resilient Software.</span>
+        <span class="bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-100 to-neon-purple">Space-Resilient Software.</span>
       </h1>
 
       <!-- Subtitle -->
@@ -134,12 +139,12 @@
 
       <!-- Hero Call-To-Action buttons -->
       <div class="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 mb-16" id="hero-actions">
-        <a href="#waitlist" id="hero-cta-primary" class="w-full sm:w-auto px-8 py-4 bg-white hover:bg-slate-100 text-space-deep font-semibold rounded-lg transition-all duration-300 text-center hover:-translate-y-0.5">
+        <a href="#waitlist" id="hero-cta-primary" class="w-full sm:w-auto px-8 py-4 bg-neon-purple hover:bg-neon-purple/90 text-white font-semibold rounded-lg shadow-lg hover:shadow-neon-purple/20 transition-all duration-300 text-center glow-purple hover:-translate-y-0.5">
           Request Early Access
         </a>
-        <a href="#roadmap" id="hero-cta-secondary" class="w-full sm:w-auto px-8 py-4 bg-transparent hover:bg-white/5 text-slate-300 hover:text-white font-semibold rounded-lg border border-white/10 hover:border-white/20 transition-all duration-300 text-center hover:-translate-y-0.5">
+        <!-- <a href="#roadmap" id="hero-cta-secondary" class="w-full sm:w-auto px-8 py-4 bg-space-card/80 hover:bg-space-card text-slate-300 hover:text-white font-semibold rounded-lg border border-white/10 hover:border-white/20 transition-all duration-300 text-center hover:-translate-y-0.5">
           Explore Roadmap
-        </a>
+        </a> -->
       </div>
 
     </section>
@@ -286,7 +291,7 @@
       <!-- Real-World Incident Callout (Airbus A320 Solar Radiation Incident) -->
       <div class="mt-16 max-w-5xl mx-auto relative group" id="problem-airbus-incident">
         <!-- Ambient outer glow -->
-        <div class="absolute inset-0 bg-gradient-to-r from-red-500/5 via-white/[0.02] to-transparent rounded-2xl blur-xl opacity-70 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-red-500/10 via-neon-purple/5 to-transparent rounded-2xl blur-xl opacity-70 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
         
         <!-- Glass card content -->
         <div class="relative glass-card rounded-2xl p-6 sm:p-8 md:p-10 border border-red-500/20 hover:border-red-500/40 transition-all duration-300">
@@ -764,10 +769,10 @@
     </section>
 
 
-    <!-- ROADMAP SECTION -->
+    <!-- ROADMAP SECTION
     <section id="roadmap" class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 border-t border-white/5 bg-space-deep">
       
-      <!-- Radial ambient glow -->
+      * Radial ambient glow *
       <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] rounded-full bg-neon-purple/5 blur-[120px] pointer-events-none z-0"></div>
 
       <div class="text-center max-w-3xl mx-auto mb-16 relative z-10">
@@ -779,17 +784,17 @@
         </p>
       </div>
 
-      <!-- Timeline layout (vertical on mobile, horizontal on desktop) -->
+      * Timeline layout (vertical on mobile, horizontal on desktop) *
       <div class="relative max-w-6xl mx-auto z-10" id="roadmap-timeline">
         
-        <!-- Center connection line (hidden on mobile, visible on desktop) -->
+        * Center connection line (hidden on mobile, visible on desktop) *
         <div class="hidden md:block absolute top-[60px] left-0 right-0 h-[2px] bg-gradient-to-r from-neon-purple/20 via-neon-green/30 to-neon-purple/20"></div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
           
-          <!-- Phase 1 -->
+          * Phase 1 *
           <div class="glass-card rounded-2xl p-8 border border-white/5 flex flex-col justify-between h-full relative group hover:scale-[1.02] transition-transform duration-300">
-            <!-- Timeline Node Indicator (visible on desktop) -->
+            * Timeline Node Indicator (visible on desktop) *
             <div class="hidden md:flex absolute -top-[9px] left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-space-deep border-4 border-neon-purple items-center justify-center glow-purple">
               <span class="absolute w-2 h-2 rounded-full bg-neon-purple animate-ping"></span>
             </div>
@@ -809,9 +814,9 @@
             </div>
           </div>
 
-          <!-- Phase 2 -->
+          * Phase 2 *
           <div class="glass-card glass-card-green rounded-2xl p-8 border border-white/5 flex flex-col justify-between h-full relative group hover:scale-[1.02] transition-transform duration-300">
-            <!-- Timeline Node Indicator (visible on desktop) -->
+            * Timeline Node Indicator (visible on desktop) *
             <div class="hidden md:flex absolute -top-[9px] left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-space-deep border-4 border-neon-green items-center justify-center glow-green"></div>
             
             <div>
@@ -829,9 +834,9 @@
             </div>
           </div>
 
-          <!-- Phase 3 -->
+          * Phase 3 *
           <div class="glass-card rounded-2xl p-8 border border-white/5 flex flex-col justify-between h-full relative group hover:scale-[1.02] transition-transform duration-300">
-            <!-- Timeline Node Indicator (visible on desktop) -->
+            * Timeline Node Indicator (visible on desktop) *
             <div class="hidden md:flex absolute -top-[9px] left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-space-deep border-4 border-neon-purple items-center justify-center glow-purple"></div>
             
             <div>
@@ -852,6 +857,7 @@
         </div>
       </div>
     </section>
+    -->
 
     <!-- LEAD CAPTURE FORM SECTION -->
     <section id="waitlist" class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 border-t border-white/5">
@@ -873,7 +879,7 @@
       <div class="max-w-xl mx-auto relative z-10" id="waitlist-card-container">
         
         <!-- Border highlight glow effect -->
-        <div class="absolute inset-0 bg-gradient-to-r from-white/[0.02] to-white/[0.06] rounded-3xl blur-2xl pointer-events-none"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-neon-purple/20 to-neon-green/20 rounded-3xl blur-2xl pointer-events-none"></div>
         
         <div class="glass-card rounded-3xl p-8 sm:p-10 border border-white/10 glow-purple relative overflow-hidden" id="form-container">
           
@@ -931,7 +937,7 @@
 
             <!-- Submit Waitlist button -->
             <button type="submit" id="submit-btn" 
-                    class="w-full py-4 bg-white hover:bg-slate-100 text-space-deep font-semibold rounded-lg transition-all duration-300 flex items-center justify-center space-x-3 group relative">
+                    class="w-full py-4 bg-gradient-to-r from-neon-purple to-neon-green hover:from-neon-purple/95 hover:to-neon-green/95 text-white font-semibold rounded-lg shadow-lg hover:shadow-neon-purple/20 transition-all duration-300 flex items-center justify-center space-x-3 group relative overflow-hidden">
               <span id="btn-text" class="relative z-10 transition-all duration-200">Join the Beta Waitlist</span>
               <!-- Subtle loading icon -->
               <svg id="btn-spinner" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true">
@@ -1076,7 +1082,7 @@
           // Disable submit button & show loading state
           submitBtn.disabled = true;
           submitBtn.classList.add('cursor-not-allowed', 'opacity-90');
-          submitBtn.classList.remove('hover:bg-slate-100');
+          submitBtn.classList.remove('hover:from-neon-purple/95', 'hover:to-neon-green/95');
           btnText.textContent = "Connecting to orbit...";
           btnSpinner.classList.remove('hidden');
           submitBtn.classList.add('animate-pulse');
@@ -1116,7 +1122,6 @@
               btnSpinner.classList.add('hidden');
               submitBtn.disabled = false;
               submitBtn.classList.remove('cursor-not-allowed', 'opacity-90');
-              submitBtn.classList.add('hover:bg-slate-100');
             }
           } catch (err) {
             // Network error — fallback to console logging
